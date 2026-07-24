@@ -52,21 +52,39 @@ justify-content:space-between;
 
 
 
-.logo {
+.logo a {
 
-font-size:20px;
+    font-family: "Instrument Serif", serif;
+    font-size: 28px;
+    text-decoration: none;
+    color: #1d1d1d;
 
 }
 
 
+.logo a:hover {
+
+    opacity: 0.6;
+
+}
+
 
 .nav-links a {
 
-margin-left:35px;
+    margin-left:35px;
 
-text-decoration:none;
+    text-decoration:none;
 
-color:#1d1d1d;
+    color:#1d1d1d;
+
+    transition: opacity 0.3s ease;
+
+}
+
+
+.nav-links a:hover {
+
+    opacity:0.5;
 
 }
 
