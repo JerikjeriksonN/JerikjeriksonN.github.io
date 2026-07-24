@@ -1,0 +1,62 @@
+@media(max-width:800px){
+
+
+header {
+
+padding:20px;
+
+}
+
+
+main {
+
+padding:100px 20px;
+
+}
+
+
+.hero {
+
+display:block;
+
+}
+
+
+h1 {
+
+font-size:70px;
+
+}
+
+
+
+.nav-links {
+
+display:none;
+
+}
+
+
+.project-preview {
+
+display:block;
+
+}
+
+
+.project-preview .placeholder {
+
+width:100%;
+
+}
+
+
+
+.technical-grid {
+
+display:block;
+
+}
+
+
+}

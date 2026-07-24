@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Instrument+Serif&display=swap');
+
+
+* {
+box-sizing:border-box;
+}
+
+
+body {
+
+margin:0;
+
+background:#f7f5f2;
+
+color:#1d1d1d;
+
+font-family:Inter, Arial, sans-serif;
+
+}
+
+
+
+header {
+
+position:fixed;
+
+top:0;
+
+width:100%;
+
+padding:30px 60px;
+
+background:rgba(247,245,242,0.9);
+
+z-index:10;
+
+}
+
+
+
+nav {
+
+display:flex;
+
+justify-content:space-between;
+
+}
+
+
+
+.logo {
+
+font-size:20px;
+
+}
+
+
+
+.nav-links a {
+
+margin-left:35px;
+
+text-decoration:none;
+
+color:#1d1d1d;
+
+}
+
+
+
+main {
+
+padding:120px 60px;
+
+}
+
+
+
+.hero {
+
+padding-top:80px;
+
+}
+
+
+.hero-title {
+
+text-align:center;
+
+margin-bottom:60px;
+
+}
+
+
+
+.hero-image {
+
+width:100%;
+
+}
+
+
+
+.hero-image .placeholder {
+
+height:75vh;
+
+width:100%;
+
+}
+
+
+
+.hero-text {
+
+flex:1;
+
+}
+
+
+
+.hero-image {
+
+flex:1;
+
+}
+
+
+
+h1 {
+
+font-family:"Instrument Serif", serif;
+
+font-size:130px;
+
+line-height:0.9;
+
+font-weight:400;
+
+margin:0;
+
+}
+
+
+
+h2 {
+
+font-family:"Instrument Serif", serif;
+
+font-size:60px;
+
+font-weight:400;
+
+}
+
+
+
+.placeholder {
+
+height:500px;
+
+background:#ddd8d2;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+}
+
+
+
+section {
+
+padding:80px 0;
+
+}
+
+
+
+.project-preview {
+
+display:flex;
+
+gap:60px;
+
+margin-bottom:100px;
+
+}
+
+
+
+.project-preview .placeholder {
+
+width:50%;
+
+}
+
+
+
+.technical-grid {
+
+display:flex;
+
+gap:80px;
+
+}
+
+
+
+.technical-grid div {
+
+flex:1;
+
+}
+
+
+
+footer {
+
+padding:80px 60px;
+
+border-top:1px solid #ddd8d2;
+
+}
