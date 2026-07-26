@@ -1,30 +1,39 @@
 console.log("Website loaded");
 
-const slides = document.querySelectorAll(".slide");
 
-const next = document.querySelector(".next");
-const prev = document.querySelector(".prev");
-
-let current = 0;
+const sliders = document.querySelectorAll(".slider");
 
 
-next.addEventListener("click", () => {
+sliders.forEach(slider => {
 
-    slides[current].classList.remove("active");
+    const slides = slider.querySelectorAll(".slide");
 
-    current = (current + 1) % slides.length;
+    const next = slider.querySelector(".next");
+    const prev = slider.querySelector(".prev");
 
-    slides[current].classList.add("active");
-
-});
+    let current = 0;
 
 
-prev.addEventListener("click", () => {
+    next.addEventListener("click", () => {
 
-    slides[current].classList.remove("active");
+        slides[current].classList.remove("active");
 
-    current = (current - 1 + slides.length) % slides.length;
+        current = (current + 1) % slides.length;
 
-    slides[current].classList.add("active");
+        slides[current].classList.add("active");
+
+    });
+
+
+    prev.addEventListener("click", () => {
+
+        slides[current].classList.remove("active");
+
+        current = (current - 1 + slides.length) % slides.length;
+
+        slides[current].classList.add("active");
+
+    });
+
 
 });
