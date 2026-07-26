@@ -189,6 +189,29 @@ margin-bottom:35px;
 
 }
 
+.slide-counter {
+
+    position:absolute;
+
+    bottom:20px;
+
+    right:25px;
+
+    color:#f7f5f2;
+
+    font-family:"Instrument Serif", serif;
+
+    font-size:20px;
+
+    letter-spacing:1px;;
+
+    font-weight:300;
+
+    letter-spacing:2px;
+
+    z-index:10;
+
+}
 
 .slider button {
 
