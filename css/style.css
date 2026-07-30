@@ -495,6 +495,45 @@ flex:1;
 }
 
 
+.neutral-section {
+
+    background:#e9e3db;
+
+    margin-left:-60px;
+    margin-right:-60px;
+
+    padding-left:60px;
+    padding-right:60px;
+
+}
+
+.about-preview {
+
+    position:relative;
+
+    z-index:3;
+
+    margin-top:-100px;
+
+    padding-top:120px !important;
+
+    clip-path: polygon(
+        0 0,
+        100% 100px,
+        100% 100%,
+        0 100%
+    );
+
+}
+
+.about-preview h2 {
+
+    font-size:38px;
+
+    margin-top:-40px;
+
+}
+
 
 footer {
 
@@ -620,13 +659,10 @@ h1 {
 }
 
 .hero-image img {
-    transform:none;
-    object-fit: cover;
-    object-position: center 72%;
-    .hero-image img {
 
-    transform:scale(2.25) translateY(-50px); !important;
-
+    transform:scale(2.25) translateY(-50px);
+    object-fit:cover;
+    object-position:center 72%;
 
 }
 
@@ -725,6 +761,67 @@ section {
 .project-preview + .project-preview {
 
     padding-top:60px;
+
+}
+
+.neutral-section {
+
+    margin-left:-20px;
+    margin-right:-20px;
+
+    padding-left:20px;
+    padding-right:20px;
+
+    padding-top:110px;
+
+}
+
+
+.about-preview {
+
+    margin-top:-60px;
+
+    padding-top:100px !important;
+
+     clip-path: polygon(
+        0 0,
+        100% 40px,
+        100% 100%,
+        0 100%
+    );
+
+}
+
+
+.about-preview h2 {
+ 
+    font-size:40px;
+
+    margin-top:-25px;
+
+}
+
+
+@media (max-width: 400px) {
+
+    header {
+        padding:15px 15px;
+    }
+
+
+    .logo img {
+
+        width:40px;
+
+    }
+
+
+    .nav-links a {
+
+        margin-left:8px;
+        font-size:11px;
+
+    }
 
 }
 

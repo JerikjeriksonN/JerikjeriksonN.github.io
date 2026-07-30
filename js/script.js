@@ -16,8 +16,13 @@ document.querySelectorAll(".slider").forEach(slider => {
 
         slides[current].classList.add("active");
 
-       counter.textContent = 
-       `${String(current + 1).padStart(2,'0')} / ${String(slides.length).padStart(2,'0')}`;
+
+        if (counter) {
+
+            counter.textContent =
+            `${String(current + 1).padStart(2,'0')} / ${String(slides.length).padStart(2,'0')}`;
+
+        }
 
     }
 
@@ -47,5 +52,65 @@ document.querySelectorAll(".slider").forEach(slider => {
 
     });
 
+
+
+    // Mobile swipe support
+
+    let startX = 0;
+    let endX = 0;
+
+
+    slider.addEventListener("touchstart", (e) => {
+
+        startX = e.touches[0].clientX;
+
+    }, { passive:true });
+
+
+
+    slider.addEventListener("touchend", (e) => {
+
+        endX = e.changedTouches[0].clientX;
+
+        let difference = startX - endX;
+
+
+        // Swipe left → next image
+
+        if (difference > 50) {
+
+            current++;
+
+            if (current >= slides.length) {
+                current = 0;
+            }
+
+            updateSlider();
+
+        }
+
+
+        // Swipe right → previous image
+
+        if (difference < -50) {
+
+            current--;
+
+            if (current < 0) {
+                current = slides.length - 1;
+            }
+
+            updateSlider();
+
+        }
+
+
+    }, { passive:true });
+
+
+
+    // Make sure first slide is displayed correctly
+
+    updateSlider();
 
 });
