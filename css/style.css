@@ -537,14 +537,18 @@ flex:1;
 
 footer {
 
-padding:80px 60px;
+    padding:0px 60px 40px;
 
-border-top:1px solid #ddd8d2;
+    border-top:1px solid #ddd8d2;
 
 }
 
 
+section.technical-preview {
 
+    padding-bottom:10;
+
+}
 
 
 .work-preview h2,
