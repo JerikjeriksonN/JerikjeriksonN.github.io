@@ -227,15 +227,69 @@ document.querySelectorAll(".custom-player").forEach(player => {
 
     });
 
-    progress.parentElement.addEventListener("click", (e) => {
+    const progressContainer = progress.parentElement;
 
-    const width = progress.parentElement.clientWidth;
 
-    const clickX = e.offsetX;
+function setProgress(e) {
 
-    const duration = audio.duration;
+    const rect = progressContainer.getBoundingClientRect();
 
-    audio.currentTime = (clickX / width) * duration;
+    let position = e.clientX - rect.left;
+
+    if(position < 0) position = 0;
+    if(position > rect.width) position = rect.width;
+
+    const percentage = position / rect.width;
+
+    audio.currentTime = percentage * audio.duration;
+
+}
+
+
+// Desktop click
+
+progressContainer.addEventListener("click", (e) => {
+
+    setProgress(e);
+
+});
+
+
+// Mobile drag
+
+let dragging = false;
+
+
+progressContainer.addEventListener("pointerdown", (e) => {
+
+    dragging = true;
+
+    progressContainer.setPointerCapture(e.pointerId);
+
+    setProgress(e);
+
+});
+
+
+progressContainer.addEventListener("pointermove", (e) => {
+
+    if(!dragging) return;
+
+    setProgress(e);
+
+});
+
+
+progressContainer.addEventListener("pointerup", () => {
+
+    dragging = false;
+
+});
+
+
+progressContainer.addEventListener("pointercancel", () => {
+
+    dragging = false;
 
 });
 
