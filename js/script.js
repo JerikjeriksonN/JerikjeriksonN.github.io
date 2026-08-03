@@ -214,18 +214,23 @@ document.querySelectorAll(".custom-player").forEach(player => {
     });
 
 
-    audio.addEventListener("timeupdate", () => {
+audio.addEventListener("timeupdate", () => {
 
-        const percent =
-        (audio.currentTime / audio.duration) * 100;
+    const percent =
+    (audio.currentTime / audio.duration) * 100;
+
+
+    if (!dragging) {
 
         progress.style.width = percent + "%";
 
+    }
 
-        time.textContent =
-        `${formatTime(audio.currentTime)} / ${formatTime(audio.duration)}`;
 
-    });
+    time.textContent =
+    `${formatTime(audio.currentTime)} / ${formatTime(audio.duration)}`;
+
+});
 
 const progressContainer = progress.parentElement;
 
