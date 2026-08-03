@@ -590,6 +590,9 @@ audio {
 
     padding:9px 15px;
 
+    user-select:none;
+
+}
 }
 
 
@@ -616,6 +619,8 @@ audio {
     font-family:"Instrument Serif", serif;
 
     font-size:22px;
+
+    user-select:text;
 
 }
 
