@@ -264,6 +264,10 @@ progressContainer.addEventListener("pointerdown", (e) => {
 
     dragging = true;
 
+    audio.pause();
+
+    button.textContent = "▶";
+
     progressContainer.setPointerCapture(e.pointerId);
 
     setProgress(e);
