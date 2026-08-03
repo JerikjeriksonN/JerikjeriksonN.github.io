@@ -227,42 +227,30 @@ document.querySelectorAll(".custom-player").forEach(player => {
 
     });
 
-    const progressContainer = progress.parentElement;
+const progressContainer = progress.parentElement;
+
+let dragging = false;
+let wasPlaying = false;
 
 
-function setProgress(e) {
+function getPercentage(e) {
 
     const rect = progressContainer.getBoundingClientRect();
 
     let position = e.clientX - rect.left;
 
-    if(position < 0) position = 0;
-    if(position > rect.width) position = rect.width;
+    position = Math.max(0, Math.min(position, rect.width));
 
-    const percentage = position / rect.width;
-
-    audio.currentTime = percentage * audio.duration;
+    return position / rect.width;
 
 }
-
-
-// Desktop click
-
-progressContainer.addEventListener("click", (e) => {
-
-    setProgress(e);
-
-});
-
-
-// Mobile drag
-
-let dragging = false;
 
 
 progressContainer.addEventListener("pointerdown", (e) => {
 
     dragging = true;
+
+    wasPlaying = !audio.paused;
 
     audio.pause();
 
@@ -270,23 +258,60 @@ progressContainer.addEventListener("pointerdown", (e) => {
 
     progressContainer.setPointerCapture(e.pointerId);
 
-    setProgress(e);
+
+    const percentage = getPercentage(e);
+
+    progress.style.width = (percentage * 100) + "%";
 
 });
+
+
+let latestPercentage = 0;
+let animationFrame;
 
 
 progressContainer.addEventListener("pointermove", (e) => {
 
     if(!dragging) return;
 
-    setProgress(e);
+
+    latestPercentage = getPercentage(e);
+
+
+    if(!animationFrame){
+
+        animationFrame = requestAnimationFrame(updateVisualProgress);
+
+    }
 
 });
 
 
-progressContainer.addEventListener("pointerup", () => {
+function updateVisualProgress(){
+
+    progress.style.width = (latestPercentage * 100) + "%";
+
+    animationFrame = null;
+
+}
+
+progressContainer.addEventListener("pointerup", (e) => {
 
     dragging = false;
+
+
+    const percentage = getPercentage(e);
+
+    audio.currentTime = percentage * audio.duration;
+
+
+    if(wasPlaying){
+
+        audio.play();
+
+        button.textContent = "Ⅱ";
+
+    }
 
 });
 

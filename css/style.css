@@ -590,10 +590,13 @@ audio {
 
     padding:9px 15px;
 
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
     user-select:none;
 
 }
-}
+
 
 
 .audio-file {
@@ -620,6 +623,9 @@ audio {
 
     font-size:22px;
 
+    -webkit-user-select:text;
+    -moz-user-select:text;
+    -ms-user-select:text;
     user-select:text;
 
 }
@@ -699,9 +705,9 @@ audio {
 
     border-radius:20px;
 
-    transition:
-        height 0.4s ease,
-        width 0.1s linear;
+  transition:
+    height 0.4s ease,
+    width 0.08s ease-out;
 
 }
 
