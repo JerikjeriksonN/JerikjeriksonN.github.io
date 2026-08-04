@@ -578,13 +578,53 @@ Live Sessions
 
 <footer id="contact">
 
-<p>
-Amsterdam · Copenhagen
+<div class="contact-intro">
+
+<p class="contact-kicker">Contact</p>
+
+<h2>Erik Magnifico</h2>
+
+<a class="contact-email" href="mailto:erik.magnifico@gmail.com">
+    erik.magnifico@gmail.com
+</a>
+
+<p class="contact-location">
+    Amsterdam · Copenhagen
 </p>
 
-<p>
-erik@erikmagnifico.com
-</p>
+</div>
+
+
+<form class="contact-form" action="https://formsubmit.co/ajax/erik.magnifico@gmail.com" method="POST">
+
+<input type="hidden" name="_subject" value="New portfolio inquiry">
+<input type="hidden" name="_template" value="table">
+
+<div class="form-field">
+    <label for="contact-name">Name</label>
+    <input id="contact-name" name="name" type="text" autocomplete="name" required>
+</div>
+
+<div class="form-field">
+    <label for="contact-email">Email address</label>
+    <input id="contact-email" name="email" type="email" autocomplete="email" required>
+</div>
+
+<div class="form-field">
+    <label for="contact-request">Your request</label>
+    <textarea id="contact-request" name="request" rows="6" required></textarea>
+</div>
+
+<div class="form-honeypot" aria-hidden="true">
+    <label for="contact-company">Company website</label>
+    <input id="contact-company" name="_honey" type="text" tabindex="-1" autocomplete="off">
+</div>
+
+<button class="contact-submit" type="submit">Send request</button>
+
+<p class="form-status" role="status" aria-live="polite"></p>
+
+</form>
 
 </footer>
 

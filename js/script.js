@@ -352,3 +352,55 @@ function formatTime(seconds){
     return `${min}:${sec}`;
 
 }
+
+
+const contactForm = document.querySelector(".contact-form");
+
+if (contactForm) {
+
+    const submitButton = contactForm.querySelector(".contact-submit");
+    const formStatus = contactForm.querySelector(".form-status");
+
+    contactForm.addEventListener("submit", async (event) => {
+
+        event.preventDefault();
+
+        submitButton.disabled = true;
+        submitButton.textContent = "Sending…";
+        formStatus.textContent = "";
+
+        const formData = new FormData(contactForm);
+        const formValues = Object.fromEntries(formData.entries());
+
+        try {
+
+            const response = await fetch(contactForm.action, {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formValues)
+            });
+
+            if (!response.ok) {
+                throw new Error("The message could not be sent.");
+            }
+
+            contactForm.reset();
+            formStatus.textContent = "Thank you — your request has been sent.";
+
+        } catch (error) {
+
+            formStatus.textContent = "Something went wrong. Please email Erik directly instead.";
+
+        } finally {
+
+            submitButton.disabled = false;
+            submitButton.textContent = "Send request";
+
+        }
+
+    });
+
+}
