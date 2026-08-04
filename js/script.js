@@ -20,11 +20,19 @@ document.querySelectorAll(".slider").forEach(slider => {
         slide.style.objectFit = "contain";
         slide.style.transition = "transform 0.45s ease, opacity 0.45s ease";
         slide.style.opacity = index === 0 ? "1" : "0";
+        slide.setAttribute("aria-hidden", index === 0 ? "false" : "true");
         slide.style.transform = index === 0 
             ? "translateX(0)" 
             : "translateX(100%)";
 
     });
+
+    if (slides.length <= 1) {
+
+        prev.hidden = true;
+        next.hidden = true;
+
+    }
 
 
 
@@ -50,6 +58,9 @@ document.querySelectorAll(".slider").forEach(slider => {
 
         const currentSlide = slides[current];
         const nextSlide = slides[nextIndex];
+
+        currentSlide.setAttribute("aria-hidden", "true");
+        nextSlide.setAttribute("aria-hidden", "false");
 
 
         // Put incoming slide in starting position
@@ -187,6 +198,43 @@ document.querySelectorAll(".custom-player").forEach(player => {
     const button = player.querySelector(".play-button");
     const progress = player.querySelector(".progress-bar");
     const time = player.querySelector(".player-time");
+    const progressContainer = progress.parentElement;
+    const trackTitle = player.dataset.trackTitle || player.querySelector(".player-title").textContent.trim();
+    const hasAudio = Boolean(audio.querySelector("source[src]"));
+
+
+    if (!hasAudio) {
+
+        player.classList.add("audio-unavailable");
+        button.disabled = true;
+        button.setAttribute("aria-label", `Audio coming soon for ${trackTitle}`);
+        time.textContent = "Audio coming soon";
+        progressContainer.tabIndex = -1;
+        progressContainer.setAttribute("aria-disabled", "true");
+        progressContainer.setAttribute("aria-valuetext", "Audio coming soon");
+
+        return;
+
+    }
+
+
+    function updatePlayerAccessibility() {
+
+        const duration = Number.isFinite(audio.duration) ? audio.duration : 0;
+        const percent = duration ? (audio.currentTime / duration) * 100 : 0;
+
+        button.setAttribute(
+            "aria-label",
+            `${audio.paused ? "Play" : "Pause"} ${trackTitle}`
+        );
+
+        progressContainer.setAttribute("aria-valuenow", String(Math.round(percent)));
+        progressContainer.setAttribute(
+            "aria-valuetext",
+            `${formatTime(audio.currentTime)} of ${formatTime(duration)}`
+        );
+
+    }
 
 
     button.addEventListener("click", () => {
@@ -203,6 +251,8 @@ document.querySelectorAll(".custom-player").forEach(player => {
 
         }
 
+        updatePlayerAccessibility();
+
     });
 
 
@@ -210,6 +260,8 @@ document.querySelectorAll(".custom-player").forEach(player => {
 
         time.textContent =
         `0:00 / ${formatTime(audio.duration)}`;
+
+        updatePlayerAccessibility();
 
     });
 
@@ -230,9 +282,9 @@ audio.addEventListener("timeupdate", () => {
     time.textContent =
     `${formatTime(audio.currentTime)} / ${formatTime(audio.duration)}`;
 
-});
+    updatePlayerAccessibility();
 
-const progressContainer = progress.parentElement;
+});
 
 let dragging = false;
 let wasPlaying = false;
@@ -327,11 +379,40 @@ progressContainer.addEventListener("pointercancel", () => {
 
 });
 
+progressContainer.addEventListener("keydown", (event) => {
+
+    if (!Number.isFinite(audio.duration)) return;
+
+    let nextTime = audio.currentTime;
+
+    if (event.key === "ArrowLeft" || event.key === "ArrowDown") {
+        nextTime -= 5;
+    } else if (event.key === "ArrowRight" || event.key === "ArrowUp") {
+        nextTime += 5;
+    } else if (event.key === "Home") {
+        nextTime = 0;
+    } else if (event.key === "End") {
+        nextTime = audio.duration;
+    } else {
+        return;
+    }
+
+    event.preventDefault();
+
+    audio.currentTime = Math.max(0, Math.min(nextTime, audio.duration));
+    progress.style.width = `${(audio.currentTime / audio.duration) * 100}%`;
+    updatePlayerAccessibility();
+
+});
+
     audio.addEventListener("ended", () => {
 
         button.textContent="▶";
+        updatePlayerAccessibility();
 
     });
+
+    updatePlayerAccessibility();
 
 
 });
