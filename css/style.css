@@ -776,8 +776,8 @@ header {
 
 .nav-links a {
 
-    margin-left:15px;
-    font-size:14px;
+    margin-left:18px;
+    font-size:15px;
 
 }
 
@@ -1278,3 +1278,26 @@ section {
 
 }
 
+@media (max-width: 768px) {
+
+    .nav-links a {
+
+        font-size:16px !important;
+
+        margin-left:15px !important;
+
+    }
+
+}
+
+@media (max-width: 400px) {
+
+    .nav-links a {
+
+        font-size:15px !important;
+
+        margin-left:10px !important;
+
+    }
+
+}
