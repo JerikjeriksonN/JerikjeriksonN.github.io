@@ -584,6 +584,12 @@ footer {
 
 }
 
+.upwork-footer {
+
+    grid-template-columns:minmax(0, 720px);
+
+}
+
 
 .contact-kicker {
 
