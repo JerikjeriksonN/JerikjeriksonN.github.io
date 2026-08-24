@@ -241,6 +241,21 @@ document.querySelectorAll(".custom-player").forEach(player => {
 
         if(audio.paused){
 
+            document.querySelectorAll(".audio-file").forEach(otherAudio => {
+
+                if (otherAudio === audio || otherAudio.paused) return;
+
+                otherAudio.pause();
+
+                const otherPlayer = otherAudio.closest(".custom-player");
+                const otherButton = otherPlayer.querySelector(".play-button");
+                const otherTitle = otherPlayer.dataset.trackTitle || otherPlayer.querySelector(".player-title").textContent.trim();
+
+                otherButton.textContent = "▶";
+                otherButton.setAttribute("aria-label", `Play ${otherTitle}`);
+
+            });
+
             audio.play();
             button.textContent = "Ⅱ";
 
@@ -256,14 +271,23 @@ document.querySelectorAll(".custom-player").forEach(player => {
     });
 
 
-    audio.addEventListener("loadedmetadata", () => {
+    function updateLoadedMetadata() {
 
         time.textContent =
         `0:00 / ${formatTime(audio.duration)}`;
 
         updatePlayerAccessibility();
 
-    });
+    }
+
+
+    audio.addEventListener("loadedmetadata", updateLoadedMetadata);
+
+    if (audio.readyState >= 1) {
+
+        updateLoadedMetadata();
+
+    }
 
 
 audio.addEventListener("timeupdate", () => {

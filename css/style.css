@@ -828,6 +828,158 @@ audio {
 }
 
 
+.project-audio-list {
+
+    display:grid;
+    gap:14px;
+    margin-top:25px;
+
+}
+
+
+.project-audio-list .custom-player {
+
+    margin-top:0;
+
+}
+
+
+.project-heading-row {
+
+    display:flex;
+    align-items:center;
+    gap:14px;
+    flex-wrap:wrap;
+
+}
+
+
+.project-heading-row h3 {
+
+    margin-right:0;
+
+}
+
+
+.project-social-links {
+
+    display:flex;
+    gap:8px;
+
+}
+
+
+.social-link {
+
+    width:34px;
+    height:34px;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid rgba(247,245,242,0.55);
+    border-radius:50%;
+
+    color:#f7f5f2;
+    text-decoration:none;
+
+    transition:background 0.2s ease, color 0.2s ease;
+
+}
+
+
+.social-link:hover {
+
+    background:#f7f5f2;
+    color:#161412;
+
+}
+
+
+.social-icon {
+
+    position:relative;
+    display:block;
+
+}
+
+
+.social-icon-instagram {
+
+    width:17px;
+    height:17px;
+
+    border:2px solid currentColor;
+    border-radius:5px;
+
+}
+
+
+.social-icon-instagram::before {
+
+    content:"";
+
+    position:absolute;
+    top:50%;
+    left:50%;
+
+    width:5px;
+    height:5px;
+
+    border:2px solid currentColor;
+    border-radius:50%;
+
+    transform:translate(-50%, -50%);
+
+}
+
+
+.social-icon-instagram::after {
+
+    content:"";
+
+    position:absolute;
+    top:2px;
+    right:2px;
+
+    width:2px;
+    height:2px;
+
+    border-radius:50%;
+    background:currentColor;
+
+}
+
+
+.social-icon-youtube {
+
+    width:19px;
+    height:14px;
+
+    border:2px solid currentColor;
+    border-radius:5px;
+
+}
+
+
+.social-icon-youtube::before {
+
+    content:"";
+
+    position:absolute;
+    top:50%;
+    left:50%;
+
+    border-top:4px solid transparent;
+    border-bottom:4px solid transparent;
+    border-left:6px solid currentColor;
+
+    transform:translate(-40%, -50%);
+
+}
+
+
 
 .audio-file {
 
@@ -897,6 +1049,33 @@ audio {
     opacity:0.6;
 
     margin-top:10px;
+
+}
+
+
+.player-meta {
+
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:14px;
+
+}
+
+
+.player-video-link {
+
+    color:#161412;
+    font-size:12px;
+    font-weight:500;
+    text-underline-offset:3px;
+
+}
+
+
+.player-video-link:hover {
+
+    opacity:0.55;
 
 }
 
