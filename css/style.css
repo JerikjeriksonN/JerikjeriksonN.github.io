@@ -828,6 +828,22 @@ audio {
 }
 
 
+.project-audio-list {
+
+    display:grid;
+    gap:14px;
+    margin-top:25px;
+
+}
+
+
+.project-audio-list .custom-player {
+
+    margin-top:0;
+
+}
+
+
 
 .audio-file {
 
