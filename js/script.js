@@ -21,6 +21,9 @@ document.querySelectorAll(".slider").forEach(slider => {
         slide.style.transition = "transform 0.45s ease, opacity 0.45s ease";
         slide.style.opacity = index === 0 ? "1" : "0";
         slide.setAttribute("aria-hidden", index === 0 ? "false" : "true");
+        if (slide instanceof HTMLVideoElement) {
+            slide.tabIndex = index === 0 ? 0 : -1;
+        }
         slide.style.transform = index === 0 
             ? "translateX(0)" 
             : "translateX(100%)";
@@ -58,6 +61,15 @@ document.querySelectorAll(".slider").forEach(slider => {
 
         const currentSlide = slides[current];
         const nextSlide = slides[nextIndex];
+
+        if (currentSlide instanceof HTMLVideoElement) {
+            currentSlide.pause();
+            currentSlide.tabIndex = -1;
+        }
+
+        if (nextSlide instanceof HTMLVideoElement) {
+            nextSlide.tabIndex = 0;
+        }
 
         currentSlide.setAttribute("aria-hidden", "true");
         nextSlide.setAttribute("aria-hidden", "false");

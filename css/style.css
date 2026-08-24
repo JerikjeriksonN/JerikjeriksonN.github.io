@@ -461,6 +461,107 @@ align-items:center;
 }
 
 
+.vst-project {
+
+    padding-top:20px;
+
+}
+
+
+.slider.vst-slider {
+
+    background:#29231e;
+    box-shadow:0 22px 55px rgba(0,0,0,0.26);
+
+    height:auto;
+    aspect-ratio:3 / 4;
+
+}
+
+
+.vst-session-photo {
+
+    object-fit:contain;
+
+}
+
+
+.vst-project-copy {
+
+    flex:1;
+
+}
+
+
+.project-kicker {
+
+    margin:0 0 12px;
+
+    font-size:12px;
+    font-weight:500;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    opacity:0.62;
+
+}
+
+
+.vst-status-link {
+
+    display:inline-flex;
+    align-items:center;
+
+    margin-top:8px;
+    padding:11px 17px;
+
+    border:1px solid rgba(247,245,242,0.58);
+    border-radius:999px;
+
+    color:#f7f5f2;
+    font-size:14px;
+    text-decoration:none;
+
+    transition:background 0.2s ease, color 0.2s ease;
+
+}
+
+
+.vst-status-link:hover {
+
+    background:#f7f5f2;
+    color:#161412;
+
+}
+
+
+.vst-interface-note {
+
+    max-width:470px;
+    margin:18px 0 0;
+
+    font-size:13px;
+    line-height:1.55;
+    opacity:0.62;
+
+}
+
+
+.dorsy-video {
+
+    display:block;
+    background:#0d0c0b;
+
+}
+
+
+.dorsy-slider .slide-counter {
+
+    bottom:52px;
+    text-shadow:0 1px 10px rgba(0,0,0,0.72);
+
+}
+
+
 /* project separators */
 
 .project-preview + .project-preview {
