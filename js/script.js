@@ -717,6 +717,81 @@ function formatTime(seconds){
 }
 
 
+const waitlistForm = document.querySelector(".vst-waitlist-form");
+
+if (waitlistForm) {
+
+    const emailInput = waitlistForm.querySelector(".vst-waitlist-input");
+    const submitButton = waitlistForm.querySelector(".vst-waitlist-submit");
+    const formStatus = waitlistForm.querySelector(".vst-waitlist-status");
+    let submitting = false;
+
+    waitlistForm.addEventListener("submit", async (event) => {
+
+        event.preventDefault();
+        if (submitting) return;
+
+        emailInput.value = emailInput.value.trim();
+        if (!waitlistForm.reportValidity()) return;
+
+        const formValues = Object.fromEntries(new FormData(waitlistForm).entries());
+        if (formValues._honey) return;
+
+        submitting = true;
+        submitButton.disabled = true;
+        emailInput.readOnly = true;
+        submitButton.textContent = "Sending…";
+        waitlistForm.setAttribute("aria-busy", "true");
+        formStatus.dataset.state = "pending";
+        formStatus.textContent = "Sending your signup…";
+
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 15000);
+
+        try {
+
+            const response = await fetch(waitlistForm.dataset.ajaxAction, {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formValues),
+                signal: controller.signal
+            });
+
+            if (!response.ok) throw new Error("Signup request failed.");
+
+            const result = await response.json();
+            if (result.success !== true && result.success !== "true") {
+                throw new Error("Signup was not accepted.");
+            }
+
+            waitlistForm.reset();
+            formStatus.dataset.state = "success";
+            formStatus.textContent = "Thank you — your signup request has been sent.";
+
+        } catch (error) {
+
+            formStatus.dataset.state = "error";
+            formStatus.textContent = "Your signup couldn’t be confirmed. Please try again, or email contact@erikmagnifico.com.";
+
+        } finally {
+
+            clearTimeout(timeout);
+            submitting = false;
+            submitButton.disabled = false;
+            emailInput.readOnly = false;
+            submitButton.textContent = "Join waitlist";
+            waitlistForm.removeAttribute("aria-busy");
+
+        }
+
+    });
+
+}
+
+
 const contactForm = document.querySelector(".contact-form");
 
 if (contactForm) {
