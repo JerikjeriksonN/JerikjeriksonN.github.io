@@ -1,3 +1,5 @@
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
 document.querySelectorAll(".slider").forEach(slider => {
 
     const slides = slider.querySelectorAll(".slide");
@@ -18,7 +20,7 @@ document.querySelectorAll(".slider").forEach(slider => {
         slide.style.width = "100%";
         slide.style.height = "100%";
         slide.style.objectFit = "contain";
-        slide.style.transition = "transform 0.45s ease, opacity 0.45s ease";
+        slide.style.transition = reducedMotion.matches ? "none" : "transform 0.45s ease, opacity 0.45s ease";
         slide.style.opacity = index === 0 ? "1" : "0";
         slide.setAttribute("aria-hidden", index === 0 ? "false" : "true");
         slide.tabIndex = index === 0 ? 0 : -1;
@@ -65,6 +67,9 @@ document.querySelectorAll(".slider").forEach(slider => {
 
         const currentSlide = slides[current];
         const nextSlide = slides[nextIndex];
+        const duration = reducedMotion.matches ? 0 : 450;
+
+        if (nextSlide instanceof HTMLImageElement) nextSlide.loading = "eager";
 
         if (currentSlide instanceof HTMLVideoElement) {
             currentSlide.pause();
@@ -96,8 +101,10 @@ document.querySelectorAll(".slider").forEach(slider => {
 
         // Animate
 
-        nextSlide.style.transition =
-            "transform 0.45s ease, opacity 0.45s ease";
+        nextSlide.style.transition = duration
+            ? "transform 0.45s ease, opacity 0.45s ease"
+            : "none";
+        currentSlide.style.transition = nextSlide.style.transition;
 
         currentSlide.style.transform =
             direction === "next"
@@ -125,7 +132,7 @@ document.querySelectorAll(".slider").forEach(slider => {
             updateCounter();
 
 
-        }, 450);
+        }, duration);
 
     }
 
@@ -221,11 +228,13 @@ if (mediaLightbox) {
     let lightboxSlides = [];
     let lightboxIndex = 0;
     let lightboxTouchStartX = 0;
+    let backgroundState = [];
 
 
     function renderLightboxMedia() {
 
         const previousVideo = lightboxStage.querySelector("video");
+        const replacingFocusedMedia = lightboxStage.contains(document.activeElement);
 
         if (previousVideo) previousVideo.pause();
 
@@ -306,12 +315,14 @@ if (mediaLightbox) {
             `Media preview ${lightboxIndex + 1} of ${lightboxSlides.length}`
         );
 
+        if (replacingFocusedMedia) lightboxClose.focus();
+
     }
 
 
     function openMediaLightbox(slide) {
 
-        if (slide.getAttribute("aria-hidden") === "true") return;
+        if (!mediaLightbox.hidden || slide.getAttribute("aria-hidden") === "true") return;
 
         const slider = slide.closest(".slider");
 
@@ -325,6 +336,11 @@ if (mediaLightbox) {
 
         renderLightboxMedia();
         lightboxClose.focus();
+
+        // Keep the underlying page out of both keyboard and assistive navigation.
+        backgroundState = Array.from(document.querySelectorAll("body > header, body > main, body > footer"))
+            .map(element => ({ element, inert: element.inert }));
+        backgroundState.forEach(({ element }) => { element.inert = true; });
 
     }
 
@@ -354,6 +370,8 @@ if (mediaLightbox) {
         lightboxCounter.textContent = "";
         lightboxSlides = [];
         lightboxIndex = 0;
+        backgroundState.forEach(({ element, inert }) => { element.inert = inert; });
+        backgroundState = [];
 
         if (lightboxTrigger) {
 
@@ -426,8 +444,27 @@ if (mediaLightbox) {
 
         if (event.key === "Escape") {
 
+            event.preventDefault();
             closeMediaLightbox();
+            return;
 
+        }
+
+        if (event.key === "Tab") {
+            const focusable = Array.from(mediaLightbox.querySelectorAll("button:not([disabled]), video[controls]"))
+                .filter(element => !element.hidden);
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            const outside = !mediaLightbox.contains(document.activeElement);
+
+            if (event.shiftKey && (document.activeElement === first || outside)) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && (document.activeElement === last || outside)) {
+                event.preventDefault();
+                first.focus();
+            }
+            return;
         }
 
         if (event.target instanceof HTMLVideoElement) return;
@@ -446,6 +483,12 @@ if (mediaLightbox) {
 
         }
 
+    });
+
+    document.addEventListener("focusin", event => {
+        if (!mediaLightbox.hidden && !mediaLightbox.contains(event.target)) {
+            lightboxClose.focus();
+        }
     });
 
 }
@@ -713,132 +756,5 @@ function formatTime(seconds){
     }
 
     return `${min}:${sec}`;
-
-}
-
-
-const waitlistForm = document.querySelector(".vst-waitlist-form");
-
-if (waitlistForm) {
-
-    const emailInput = waitlistForm.querySelector(".vst-waitlist-input");
-    const submitButton = waitlistForm.querySelector(".vst-waitlist-submit");
-    const formStatus = waitlistForm.querySelector(".vst-waitlist-status");
-    let submitting = false;
-
-    waitlistForm.addEventListener("submit", async (event) => {
-
-        event.preventDefault();
-        if (submitting) return;
-
-        emailInput.value = emailInput.value.trim();
-        if (!waitlistForm.reportValidity()) return;
-
-        const formValues = Object.fromEntries(new FormData(waitlistForm).entries());
-        if (formValues._honey) return;
-
-        submitting = true;
-        submitButton.disabled = true;
-        emailInput.readOnly = true;
-        submitButton.textContent = "Sending…";
-        waitlistForm.setAttribute("aria-busy", "true");
-        formStatus.dataset.state = "pending";
-        formStatus.textContent = "Sending your signup…";
-
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 15000);
-
-        try {
-
-            const response = await fetch(waitlistForm.dataset.ajaxAction, {
-                method: "POST",
-                headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(formValues),
-                signal: controller.signal
-            });
-
-            if (!response.ok) throw new Error("Signup request failed.");
-
-            const result = await response.json();
-            if (result.success !== true && result.success !== "true") {
-                throw new Error("Signup was not accepted.");
-            }
-
-            waitlistForm.reset();
-            formStatus.dataset.state = "success";
-            formStatus.textContent = "Thank you — your signup request has been sent.";
-
-        } catch (error) {
-
-            formStatus.dataset.state = "error";
-            formStatus.textContent = "Your signup couldn’t be confirmed. Please try again, or email contact@erikmagnifico.com.";
-
-        } finally {
-
-            clearTimeout(timeout);
-            submitting = false;
-            submitButton.disabled = false;
-            emailInput.readOnly = false;
-            submitButton.textContent = "Join waitlist";
-            waitlistForm.removeAttribute("aria-busy");
-
-        }
-
-    });
-
-}
-
-
-const contactForm = document.querySelector(".contact-form");
-
-if (contactForm) {
-
-    const submitButton = contactForm.querySelector(".contact-submit");
-    const formStatus = contactForm.querySelector(".form-status");
-
-    contactForm.addEventListener("submit", async (event) => {
-
-        event.preventDefault();
-
-        submitButton.disabled = true;
-        submitButton.textContent = "Sending…";
-        formStatus.textContent = "";
-
-        const formData = new FormData(contactForm);
-        const formValues = Object.fromEntries(formData.entries());
-
-        try {
-
-            const response = await fetch(contactForm.action, {
-                method: "POST",
-                headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(formValues)
-            });
-
-            if (!response.ok) {
-                throw new Error("The message could not be sent.");
-            }
-
-            contactForm.reset();
-            formStatus.textContent = "Thank you — your request has been sent.";
-
-        } catch (error) {
-
-            formStatus.textContent = "Something went wrong. Please email Erik directly instead.";
-
-        } finally {
-
-            submitButton.disabled = false;
-            submitButton.textContent = "Send request";
-
-        }
-
-    });
 
 }

@@ -6,11 +6,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Erik Magnifico |  Music Producer</title>
+<title>Erik Magnifico | Recording, Mixing &amp; Music Production</title>
+
+<!-- Sharing/search metadata: remove this block to undo; no visible layout changes. -->
+<meta name="description" content="Recording, mixing and music production by Erik Magnifico. Explore studio sessions, live recordings and a sampled upright piano instrument in development.">
+<link rel="canonical" href="https://erikmagnifico.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Erik Magnifico">
+<meta property="og:title" content="Erik Magnifico | Recording, Mixing &amp; Music Production">
+<meta property="og:description" content="Studio sessions, live recordings and music production. Explore Erik’s work and get in touch about your next project.">
+<meta property="og:url" content="https://erikmagnifico.com/">
+<meta property="og:image" content="https://erikmagnifico.com/images/hero-1200.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="800">
+<meta property="og:image:alt" content="Studio recording session from Erik Magnifico’s portfolio">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Erik Magnifico | Recording, Mixing &amp; Music Production">
+<meta name="twitter:description" content="Studio sessions, live recordings and music production by Erik Magnifico.">
+<meta name="twitter:image" content="https://erikmagnifico.com/images/hero-1200.jpg">
+<meta name="twitter:image:alt" content="Studio recording session from Erik Magnifico’s portfolio">
+<!-- End sharing/search metadata. -->
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2">
 
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=20260827-cleanup">
 
 </head>
 
@@ -71,7 +90,7 @@ Abbey Road Institute Amsterdam
 
 <div class="hero-image">
 
-    <img src="images/hero.jpg" alt="Studio session">
+    <img src="images/hero-1600.jpg" srcset="images/hero-800.jpg 800w, images/hero-1200.jpg 1200w, images/hero-1600.jpg 1600w, images/hero-2400.jpg 2400w" sizes="(max-width: 768px) calc(100vw - 40px), calc(100vw - 120px)" width="6000" height="4000" fetchpriority="high" alt="Studio session">
 
 </div>
 
@@ -146,10 +165,11 @@ Sampling · Recording · Editing · Instrument Design
 Interface previews and playable audio demos are coming as development continues.
 </p>
 
-<form class="vst-waitlist-form" action="https://formsubmit.co/contact@erikmagnifico.com" data-ajax-action="https://formsubmit.co/ajax/contact@erikmagnifico.com" method="POST">
+<form class="vst-waitlist-form" data-email-form action="https://formsubmit.co/contact@erikmagnifico.com" data-ajax-action="https://formsubmit.co/ajax/contact@erikmagnifico.com" data-success-message="Thank you — your signup request has been sent." method="POST" rel="noopener">
 
     <input type="hidden" name="_subject" value="New Upright Piano VST waitlist signup">
     <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_url" value="https://erikmagnifico.com/">
     <input type="hidden" name="interest" value="Upright Piano VST waitlist">
     <input type="hidden" name="request" value="Please email me occasional updates about the Upright Piano VST.">
 
@@ -159,7 +179,7 @@ Interface previews and playable audio demos are coming as development continues.
 
     <div class="vst-waitlist-row">
         <input class="vst-waitlist-input" id="vst-waitlist-email" name="email" type="email" autocomplete="email" autocapitalize="none" spellcheck="false" aria-describedby="vst-waitlist-note" placeholder="Your email address" required>
-        <button class="vst-waitlist-submit" type="submit">Join waitlist</button>
+        <button class="vst-waitlist-submit" data-form-submit type="submit">Join waitlist</button>
     </div>
 
     <div class="form-honeypot" aria-hidden="true">
@@ -168,7 +188,11 @@ Interface previews and playable audio demos are coming as development continues.
     </div>
 
     <p class="vst-waitlist-note" id="vst-waitlist-note">By joining, you’re asking Erik to email you occasional updates about this instrument.</p>
-    <p class="vst-waitlist-status" role="status" aria-live="polite" aria-atomic="true"></p>
+    <p class="vst-waitlist-status" data-form-status role="status" aria-live="polite" aria-atomic="true"></p>
+    <div class="form-fallback" data-form-fallback hidden>
+        <button class="form-fallback-button" data-native-submit type="submit" formtarget="_blank">Try secure form ↗</button>
+        <p>Opens FormSubmit in a new tab without clearing your details here.</p>
+    </div>
 
 </form>
 
@@ -273,34 +297,32 @@ Songwriting · Production · Mixing
 
 <div class="slider dorsy-slider">
 
-    <img src="images/dorsy-session/dorsy-session-01-control-room.jpg" class="slide active" alt="Dorsy team working together at the studio console, image 1 of 12" decoding="async">
+    <img src="images/dorsy-session/dorsy-session-01-control-room.jpg" class="slide active" alt="Dorsy team working together at the studio console, image 1 of 11" loading="lazy" decoding="async">
 
-    <img src="images/dorsy-session/dorsy-session-02-2935.jpg" class="slide" alt="Close view of the analogue studio console during the Dorsy session, image 2 of 12" loading="lazy" decoding="async">
+    <img src="images/dorsy-session/dorsy-session-02-2935.jpg" class="slide" alt="Close view of the analogue studio console during the Dorsy session, image 2 of 11" loading="lazy" decoding="async">
 
-    <img src="images/dorsy-session/dorsy-session-03-2942.jpg" class="slide" alt="Wide view of the Dorsy control room and recording console, image 3 of 12" loading="lazy" decoding="async">
+    <img src="images/dorsy-session/dorsy-session-03-2942.jpg" class="slide" alt="Wide view of the Dorsy control room and recording console, image 3 of 11" loading="lazy" decoding="async">
 
-    <img src="images/dorsy-session/dorsy-session-04-2946.jpg" class="slide" alt="Microphone setup in the live room for the Dorsy recording, image 4 of 12" loading="lazy" decoding="async">
+    <img src="images/dorsy-session/dorsy-session-04-2946.jpg" class="slide" alt="Microphone setup in the live room for the Dorsy recording, image 4 of 11" loading="lazy" decoding="async">
 
-    <img src="images/dorsy-session/dorsy-session-05-2949.jpg" class="slide" alt="Drum kit and microphone setup during the Dorsy recording, image 5 of 12" loading="lazy" decoding="async">
+    <img src="images/dorsy-session/dorsy-session-05-2949.jpg" class="slide" alt="Drum kit and microphone setup during the Dorsy recording, image 5 of 11" loading="lazy" decoding="async">
 
-    <img src="images/dorsy-session/dorsy-session-06-2951.jpg" class="slide" alt="Studio tape machine during the Dorsy recording session, image 6 of 12" loading="lazy" decoding="async">
+    <img src="images/dorsy-session/dorsy-session-06-2951.jpg" class="slide" alt="Studio tape machine during the Dorsy recording session, image 6 of 11" loading="lazy" decoding="async">
 
-    <img src="images/dorsy-session/dorsy-session-07-2960.jpg" class="slide" alt="Engineer working at the console during the Dorsy session, image 7 of 12" loading="lazy" decoding="async">
+    <img src="images/dorsy-session/dorsy-session-07-2960.jpg" class="slide" alt="Engineer working at the console during the Dorsy session, image 7 of 11" loading="lazy" decoding="async">
 
-    <img src="images/dorsy-session/dorsy-session-08-2962.jpg" class="slide" alt="Dorsy team in the control room during recording, image 8 of 12" loading="lazy" decoding="async">
+    <img src="images/dorsy-session/dorsy-session-08-2962.jpg" class="slide" alt="Dorsy team in the control room during recording, image 8 of 11" loading="lazy" decoding="async">
 
-    <img src="images/dorsy-session/dorsy-session-09-5794.jpg" class="slide" alt="Engineer listening at the studio console during the Dorsy session, image 9 of 12" loading="lazy" decoding="async">
+    <img src="images/dorsy-session/dorsy-session-09-5794.jpg" class="slide" alt="Engineer listening at the studio console during the Dorsy session, image 9 of 11" loading="lazy" decoding="async">
 
-    <img src="images/dorsy-session/dorsy-session-10-6650.jpg" class="slide" alt="Group listening together at the console during the Dorsy session, image 10 of 12" loading="lazy" decoding="async">
+    <img src="images/dorsy-session/dorsy-session-10-6650.jpg" class="slide" alt="Group listening together at the console during the Dorsy session, image 10 of 11" loading="lazy" decoding="async">
 
-    <img src="images/dorsy-01.jpg" class="slide" alt="Original Dorsy recording-session photograph, image 11 of 12" loading="lazy" decoding="async">
-
-    <video class="slide dorsy-video" controls preload="metadata" playsinline aria-label="Dorsy studio-session video, item 12 of 12">
+    <video class="slide dorsy-video" controls preload="metadata" playsinline aria-label="Dorsy studio-session video, item 11 of 11">
         <source src="video/dorsy-session-01.m4v" type="video/mp4">
     </video>
 
     <div class="slide-counter">
-        01 / 12
+        01 / 11
     </div>
 
 <button class="prev" type="button" aria-label="Previous image in the Dorsy gallery">
@@ -340,7 +362,7 @@ Production · Recording · Neve VR Legend · Studer Tape
 
 <div class="custom-player" data-track-title="Dorsy — Studio Recording">
 
-    <audio class="audio-file">
+    <audio class="audio-file" preload="metadata">
         <source src="audio/dorsy_01.mp3" type="audio/mpeg">
     </audio>
 
@@ -381,29 +403,29 @@ Production · Recording · Neve VR Legend · Studer Tape
 
 <div class="slider">
 
-    <img src="images/suitespot-05.jpg" class="slide active" alt="Suite Spot Concerts recording session, image 1 of 12">
+    <img src="images/suitespot-05.jpg" class="slide active" alt="Suite Spot Concerts recording session, image 1 of 12" loading="lazy" decoding="async">
 
-    <img src="images/suitespot-01.jpg" class="slide" alt="Suite Spot Concerts recording session, image 2 of 12">
+    <img src="images/suitespot-01.jpg" class="slide" alt="Suite Spot Concerts recording session, image 2 of 12" loading="lazy" decoding="async">
 
-    <img src="images/suitespot-02.jpg" class="slide" alt="Suite Spot Concerts recording session, image 3 of 12">
+    <img src="images/suitespot-02.jpg" class="slide" alt="Suite Spot Concerts recording session, image 3 of 12" loading="lazy" decoding="async">
 
-    <img src="images/suitespot-03.jpg" class="slide" alt="Suite Spot Concerts recording session, image 4 of 12">
+    <img src="images/suitespot-03.jpg" class="slide" alt="Suite Spot Concerts recording session, image 4 of 12" loading="lazy" decoding="async">
 
-    <img src="images/suitespot-04.jpg" class="slide" alt="Suite Spot Concerts recording session, image 5 of 12">
+    <img src="images/suitespot-04.jpg" class="slide" alt="Suite Spot Concerts recording session, image 5 of 12" loading="lazy" decoding="async">
 
-    <img src="images/suitespot-06.jpg" class="slide" alt="Suite Spot Concerts recording session, image 6 of 12">
+    <img src="images/suitespot-06.jpg" class="slide" alt="Suite Spot Concerts recording session, image 6 of 12" loading="lazy" decoding="async">
 
-    <img src="images/suitespot-07.jpg" class="slide" alt="Suite Spot Concerts recording session, image 7 of 12">
+    <img src="images/suitespot-07.jpg" class="slide" alt="Suite Spot Concerts recording session, image 7 of 12" loading="lazy" decoding="async">
 
-    <img src="images/suitespot-08.jpg" class="slide" alt="Suite Spot Concerts recording session, image 8 of 12">
+    <img src="images/suitespot-08.jpg" class="slide" alt="Suite Spot Concerts recording session, image 8 of 12" loading="lazy" decoding="async">
 
-    <img src="images/suitespot-09.jpg" class="slide" alt="Suite Spot Concerts recording session, image 9 of 12">
+    <img src="images/suitespot-09.jpg" class="slide" alt="Suite Spot Concerts recording session, image 9 of 12" loading="lazy" decoding="async">
 
-    <img src="images/suitespot-10.jpg" class="slide" alt="Suite Spot Concerts recording session, image 10 of 12">
+    <img src="images/suitespot-10.jpg" class="slide" alt="Suite Spot Concerts recording session, image 10 of 12" loading="lazy" decoding="async">
 
-    <img src="images/suitespot-11.jpg" class="slide" alt="Suite Spot Concerts recording session, image 11 of 12">
+    <img src="images/suitespot-11.jpg" class="slide" alt="Suite Spot Concerts recording session, image 11 of 12" loading="lazy" decoding="async">
 
-    <img src="images/suitespot-12.jpg" class="slide" alt="Suite Spot Concerts recording session, image 12 of 12">
+    <img src="images/suitespot-12.jpg" class="slide" alt="Suite Spot Concerts recording session, image 12 of 12" loading="lazy" decoding="async">
 
     <div class="slide-counter">
         01 / 12
@@ -509,17 +531,14 @@ Recording · Mixing · Production
 </div>
 
 
-</div>
-
-
 <div class="project-preview">
 
 
 <div class="slider">
 
-    <img src="images/paradiso-01.jpg" class="slide active" alt="Paradiso recording">
+    <img src="images/paradiso-01.jpg" class="slide active" alt="Paradiso recording" loading="lazy" decoding="async">
 
-    <img src="images/paradiso-02.jpg" class="slide" alt="Paradiso control room mixing console">
+    <img src="images/paradiso-02.jpg" class="slide" alt="Paradiso control room mixing console" loading="lazy" decoding="async">
 
     <div class="slide-counter">
         01 / 02
@@ -634,10 +653,6 @@ Recording · Mixing · Engineering
 
 
 </div>
-
-
-</div>
-
 
 
 </section>
@@ -811,10 +826,11 @@ Live Sessions
 </div>
 
 
-<form class="contact-form" action="https://formsubmit.co/ajax/contact@erikmagnifico.com" method="POST">
+<form class="contact-form" data-email-form action="https://formsubmit.co/contact@erikmagnifico.com" data-ajax-action="https://formsubmit.co/ajax/contact@erikmagnifico.com" data-success-message="Thank you — your request has been sent." method="POST" rel="noopener">
 
 <input type="hidden" name="_subject" value="New portfolio inquiry">
 <input type="hidden" name="_template" value="table">
+<input type="hidden" name="_url" value="https://erikmagnifico.com/">
 
 <div class="form-field">
     <label for="contact-name">Name</label>
@@ -836,9 +852,14 @@ Live Sessions
     <input id="contact-company" name="_honey" type="text" tabindex="-1" autocomplete="off">
 </div>
 
-<button class="contact-submit" type="submit">Send request</button>
+<button class="contact-submit" data-form-submit type="submit">Send request</button>
 
-<p class="form-status" role="status" aria-live="polite"></p>
+<p class="form-status" data-form-status role="status" aria-live="polite" aria-atomic="true"></p>
+
+<div class="form-fallback" data-form-fallback hidden>
+    <button class="form-fallback-button" data-native-submit type="submit" formtarget="_blank">Try secure form ↗</button>
+    <p>Opens FormSubmit in a new tab without clearing your details here.</p>
+</div>
 
 </form>
 
@@ -869,7 +890,8 @@ Live Sessions
 
 
 
-<script src="js/script.js"></script>
+<script src="js/script.js?v=20260827-cleanup"></script>
+<script src="js/forms.js?v=20260827-cleanup"></script>
 
 
 </body>
