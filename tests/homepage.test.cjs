@@ -11,6 +11,8 @@ const liveHtml = html.replace(/<!--[\s\S]*?-->/g, value => value.replace(/[^\n]/
 const script = fs.readFileSync(path.join(root, 'js/script.js'), 'utf8');
 const forms = fs.readFileSync(path.join(root, 'js/forms.js'), 'utf8');
 const css = fs.readFileSync(path.join(root, 'css/style.css'), 'utf8');
+const linksHtml = fs.readFileSync(path.join(root, 'links/index.html'), 'utf8');
+const linksCss = fs.readFileSync(path.join(root, 'links/links.css'), 'utf8');
 
 test('HTML nesting, ids, anchors and local asset references are valid', () => {
     const stack = [];
@@ -98,6 +100,30 @@ test('Dorsy has ten photos and one video; removed photo remains on disk', () => 
     assert.ok(gallery.includes('01 / 11'));
     assert.ok(!gallery.includes('of 12'));
     assert.ok(fs.existsSync(path.join(root, 'images/dorsy-01.jpg')));
+});
+
+test('/links has the four intended destinations and complete metadata', () => {
+    const expected = [
+        'href="../index.html"',
+        'href="https://www.instagram.com/erik.magnifico/"',
+        'href="https://www.instagram.com/suitespotconcert/"',
+        'href="https://www.linkedin.com/in/erikmagnifico"'
+    ];
+    expected.forEach(link => assert.ok(linksHtml.includes(link), link));
+    assert.ok(linksHtml.includes('href="https://erikmagnifico.com/links/"'));
+    assert.ok(linksHtml.includes('property="og:image"'));
+    assert.ok(linksHtml.includes('aria-label="Erik Magnifico’s links"'));
+    assert.ok(linksCss.includes('min-height:100dvh'));
+    assert.ok(linksCss.includes('@media (prefers-reduced-motion: reduce)'));
+    assert.ok(linksHtml.includes('based in Amsterdam.'));
+    assert.ok(!linksHtml.includes('Amsterdam and Copenhagen'));
+    assert.ok(linksCss.includes('.link-list::before'));
+    assert.ok(linksCss.includes('clip-path:polygon(0 48px'));
+    assert.match(linksCss, /\.links-page\s*\{[^}]*position:relative;/s);
+    assert.match(linksCss, /\.links-logo\s*\{[^}]*position:absolute;[^}]*top:18px;[^}]*left:35px;/s);
+    assert.ok(html.includes('href="links/index.html"'));
+    assert.ok(html.includes('aria-label="Erik Magnifico’s social links"'));
+    assert.ok(!liveHtml.includes('Amsterdam · Copenhagen'));
 });
 
 function formHarness(fetchImpl, options = {}) {
