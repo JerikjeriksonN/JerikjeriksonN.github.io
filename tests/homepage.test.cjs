@@ -116,6 +116,8 @@ test('/links has the four intended destinations and complete metadata', () => {
     assert.ok(linksCss.includes('min-height:100dvh'));
     assert.ok(linksCss.includes('@media (prefers-reduced-motion: reduce)'));
     assert.ok(linksHtml.includes('based in Amsterdam.'));
+    assert.ok(linksHtml.includes('Projects, recordings and music software'));
+    assert.ok(!linksHtml.includes('and the upright piano VST'));
     assert.ok(!linksHtml.includes('Amsterdam and Copenhagen'));
     assert.ok(linksCss.includes('.link-list::before'));
     assert.ok(linksCss.includes('clip-path:polygon(0 48px'));
