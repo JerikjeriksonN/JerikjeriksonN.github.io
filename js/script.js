@@ -1,5 +1,15 @@
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+const workSection = document.querySelector("#work");
+const additionalWork = workSection?.querySelector(".additional-work");
+
+if (additionalWork) {
+    ["dorsy", "suite-spot", "vst", "paradiso"].forEach(projectName => {
+        const project = workSection.querySelector(`[data-work-project="${projectName}"]`);
+        if (project) additionalWork.before(project);
+    });
+}
+
 document.querySelectorAll(".slider").forEach(slider => {
 
     const slides = slider.querySelectorAll(".slide");

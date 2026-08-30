@@ -35,6 +35,8 @@ test('HTML nesting, ids, anchors and local asset references are valid', () => {
     assert.equal((liveHtml.match(/name="_url"/g) || []).length, 2);
     assert.ok(!liveHtml.includes('Zoey Hernandez'));
     assert.ok(html.includes('Zoey Hernandez project on hold'));
+    assert.ok(liveHtml.includes('class="skip-link" href="#main-content"'));
+    assert.ok(liveHtml.includes('<main id="main-content">'));
 });
 
 test('styles have balanced scopes and no accidentally nested selectors', () => {
@@ -72,6 +74,40 @@ test('original hero and four approved VST pictures are byte-for-byte unchanged',
     for (const [file, hash] of Object.entries(expected)) {
         assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex'), hash);
     }
+});
+
+test('optimized VST delivery copies preserve originals and reduce transfer size', () => {
+    for (const number of ['01', '02', '03', '04']) {
+        const original = path.join(root, `images/vst-session/vst-session-edited-${number}.png`);
+        const delivery = path.join(root, `images/vst-session/vst-session-web-${number}.jpg`);
+        assert.ok(fs.existsSync(delivery));
+        assert.ok(fs.statSync(delivery).size < fs.statSync(original).size);
+        assert.ok(liveHtml.includes(`src="images/vst-session/vst-session-web-${number}.jpg"`));
+    }
+    const vstGallery = liveHtml.split('<div class="slider vst-slider">')[1].split('<button class="prev"')[0];
+    assert.equal((vstGallery.match(/loading="lazy"/g) || []).length, 4);
+});
+
+test('legacy blank routes now redirect to current homepage sections', () => {
+    const redirects = new Map([
+        ['about.html', 'index.html#about'],
+        ['contact.html', 'index.html#contact'],
+        ['education.html', 'index.html#education'],
+        ['equipment.html', 'index.html#technical'],
+        ['work.html', 'index.html#work'],
+        ['projects/Dorsy.html', '../index.html#dorsy'],
+        ['projects/paradiso.html', '../index.html#paradiso'],
+        ['projects/suite-spot.html', '../index.html#suite-spot']
+    ]);
+    redirects.forEach((destination, file) => {
+        const redirect = fs.readFileSync(path.join(root, file), 'utf8');
+        assert.ok(redirect.includes(`content="0; url=${destination}"`), file);
+        assert.ok(redirect.includes(`href="${destination}"`), file);
+    });
+    assert.ok(fs.readFileSync(path.join(root, 'robots.txt'), 'utf8').includes('https://erikmagnifico.com/sitemap.xml'));
+    const sitemap = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
+    assert.ok(sitemap.includes('<loc>https://erikmagnifico.com/</loc>'));
+    assert.ok(sitemap.includes('<loc>https://erikmagnifico.com/links/</loc>'));
 });
 
 test('hero derivatives, lazy galleries and reversible sharing metadata are present', () => {
@@ -145,6 +181,7 @@ test('/links has the four intended destinations and complete metadata', () => {
     assert.ok(!liveHtml.includes('Avid Pro Tools Certification'));
     assert.ok(!liveHtml.includes('Apple Digital Masters Workflow'));
     assert.ok(liveHtml.includes('From session setup to final mix.'));
+    assert.ok(css.includes('font-size:clamp(46px, 5vw, 72px)'));
     assert.ok(liveHtml.includes('Recording &amp; Sampling'));
     assert.ok(liveHtml.includes('Editing &amp; Mixing'));
     assert.ok(liveHtml.includes('Software Workflow'));
@@ -152,15 +189,52 @@ test('/links has the four intended destinations and complete metadata', () => {
     assert.ok(liveHtml.includes('Dolby Atmos music workflows'));
     assert.ok(!liveHtml.includes('multi-mic upright piano sampling'));
     assert.ok(!liveHtml.includes('class="technical-number"'));
-    const technicalSection = liveHtml.split('<section class="technical-preview neutral-section">')[1].split('</section>')[0];
+    const technicalSection = liveHtml.split('<section id="technical" class="technical-preview neutral-section">')[1].split('</section>')[0];
     assert.ok(!technicalSection.includes('Neve VR Legend'));
     assert.ok(!technicalSection.includes('SSL 8000 G'));
     assert.ok(!technicalSection.includes('Studer Tape'));
-    assert.ok(liveHtml.includes('A musician’s ear behind the desk.'));
+    assert.ok(!liveHtml.includes('A musician’s ear behind the desk.'));
     assert.ok(liveHtml.includes('intimate live sessions'));
-    assert.ok(liveHtml.includes('Performance-led'));
-    assert.ok(liveHtml.includes('Detail-focused'));
-    assert.ok(liveHtml.includes('Collaborative'));
+    assert.ok(css.includes('grid-template-columns:minmax(280px, 0.85fr) minmax(360px, 1fr)'));
+    assert.ok(css.includes('.about-copy .about-lead {\n    grid-row:1 / span 2;\n    font-family:"Instrument Serif", serif;\n    font-size:24px;'));
+    assert.ok(css.includes('.about-copy .about-lead {\n        font-size:22px;'));
+    assert.ok(!liveHtml.includes('The technical choices should support the performance—not compete with it.'));
+    assert.ok(!liveHtml.includes('class="about-closing"'));
+    assert.ok(!liveHtml.includes('class="about-signals"'));
+    assert.ok(liveHtml.includes('<h2 class="education-kicker">Education</h2>'));
+    assert.ok(!liveHtml.includes('Education &amp; Training'));
+    assert.ok(!liveHtml.includes('Current studies at Abbey Road Institute Amsterdam alongside completed Dolby Atmos training.'));
+    assert.ok(liveHtml.includes('Dolby Atmos Mix Room Design and DARDT Training - Completion Certificate'));
+    assert.ok(liveHtml.includes('Dolby Atmos Essentials Completion Certificate'));
+    assert.ok(liveHtml.includes('MTZfMTYxNDJfTWVsMldpbiMyMDIyI0xpbmtkaW4'));
+    assert.ok(liveHtml.includes('Ml8xNjE0Ml9NZWwyV2luIzIwMjIjTGlua2Rpbg'));
+    assert.ok(!liveHtml.includes('<h3>\nAdditional Training'));
+    assert.ok(!liveHtml.includes('Dolby Atmos certified engineer'));
+    assert.ok(!liveHtml.includes('Hands-on study across recording, production, editing and mixing'));
+    assert.ok(!liveHtml.includes('class="education-meta"'));
+    const educationStyles = css.split('.education-preview {')[1].split('.technical-preview {')[0];
+    assert.ok(!educationStyles.includes('border-top'));
+    assert.ok(!educationStyles.includes('border-bottom'));
+    assert.ok(educationStyles.includes('padding-top:clamp(48px, 5vw, 68px)'));
+    assert.ok(educationStyles.includes('padding-bottom:clamp(52px, 5.5vw, 74px)'));
+    assert.ok(educationStyles.includes('margin-top:26px'));
+    assert.ok(!css.includes('.education-grid::before'));
+    assert.ok(css.includes('.education-grid::after'));
+    assert.ok(css.includes('bottom:-54px'));
+    assert.ok(!educationStyles.includes('padding-top:clamp(36px, 3.5vw, 46px)'));
+    assert.ok(!educationStyles.includes('padding-bottom:clamp(50px, 4.5vw, 62px)'));
+    assert.ok(!css.includes('.education-preview::before'));
+    assert.ok(!css.includes('.technical-preview::before'));
+    assert.ok(css.includes('body > header {'));
+    assert.ok(!/(?:^|\n)\s*header\s*\{/m.test(css));
+    assert.ok(css.includes('.about-preview::after'));
+    assert.ok(!css.includes('.about-kicker::before'));
+    assert.ok(liveHtml.includes('<header class="about-heading">'));
+    assert.ok(liveHtml.includes('<h2 class="about-kicker">About</h2>'));
+    assert.ok(liveHtml.includes('<header class="education-heading">'));
+    assert.ok(script.includes('["dorsy", "suite-spot", "vst", "paradiso"]'));
+    assert.ok(liveHtml.includes('data-work-project="dorsy"'));
+    assert.ok(liveHtml.includes('data-work-project="suite-spot"'));
 });
 
 function formHarness(fetchImpl, options = {}) {

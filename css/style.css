@@ -37,9 +37,27 @@ overflow-x:hidden;
 
 }
 
+.skip-link {
+    position:fixed;
+    top:12px;
+    left:12px;
+    z-index:100;
+    padding:11px 15px;
+    border-radius:7px;
+    background:#161412;
+    color:#f7f5f2;
+    text-decoration:none;
+    transform:translateY(-180%);
+    transition:transform 0.2s ease;
+}
+
+.skip-link:focus {
+    transform:translateY(0);
+}
 
 
-header {
+
+body > header {
 
 position:fixed;
 
@@ -1537,7 +1555,7 @@ audio {
 @media (max-width: 768px) {
 
 
-header {
+body > header {
 
     padding:15px 20px;
 
@@ -1763,7 +1781,7 @@ section {
 
 @media (max-width: 400px) {
 
-    header {
+    body > header {
         padding:15px 15px;
     }
 
@@ -1921,18 +1939,15 @@ section {
 }
 
 
-.education-preview::before,
-.technical-preview::before {
+.education-grid::after {
 
     content:"";
 
     position:absolute;
 
-    top:0;
+    left:0;
 
-    left:40px;
-
-    width:calc(100% - 120px);
+    width:100%;
 
     height:2px;
 
@@ -1940,6 +1955,10 @@ section {
 
     border-radius:20px;
 
+}
+
+.education-grid::after {
+    bottom:-54px;
 }
 
 .neutral-section > * {
@@ -1950,7 +1969,6 @@ section {
 
 }
 
-.education-preview h2,
 .technical-preview h2 {
 
     margin-top:0;
@@ -1959,11 +1977,129 @@ section {
 
 }
 
-.education-preview h3,
 .technical-preview h3 {
 
     margin-top:0;
 
+}
+
+.education-preview {
+    padding-top:clamp(48px, 5vw, 68px);
+    padding-bottom:clamp(52px, 5.5vw, 74px);
+}
+
+.education-heading {
+    display:block;
+}
+
+.education-kicker {
+    margin:0;
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    opacity:0.62;
+}
+
+.education-grid {
+    position:relative;
+    display:grid;
+    grid-template-columns:minmax(0, 1.08fr) minmax(340px, 0.92fr);
+    gap:clamp(48px, 8vw, 120px);
+    margin-top:26px;
+}
+
+.education-program h3 {
+    max-width:620px;
+    margin:0 0 18px;
+    font-family:"Instrument Serif", serif;
+    font-size:clamp(31px, 3vw, 44px);
+    font-weight:400;
+    line-height:1.05;
+}
+
+.education-program-name {
+    margin:0 0 10px;
+    font-size:16px;
+    font-weight:500;
+    line-height:1.45;
+}
+
+.education-year {
+    margin:0;
+    font-size:13px;
+    line-height:1.45;
+    opacity:0.62;
+}
+
+.education-group-label {
+    margin:0 0 18px;
+    font-size:12px;
+    font-weight:500;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    opacity:0.62;
+}
+
+.education-certificate {
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) auto;
+    align-items:end;
+    gap:20px;
+    padding:10px 0 14px;
+    color:inherit;
+    text-decoration:none;
+}
+
+.education-certificate + .education-certificate {
+    margin-top:12px;
+}
+
+.education-certificate-name {
+    max-width:520px;
+    font-family:"Instrument Serif", serif;
+    font-size:clamp(23px, 2vw, 29px);
+    line-height:1.08;
+}
+
+.education-certificate-link {
+    white-space:nowrap;
+    font-size:11px;
+    font-weight:500;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    opacity:0.64;
+    transition:opacity 0.2s ease, transform 0.2s ease;
+}
+
+.education-certificate:hover .education-certificate-link,
+.education-certificate:focus-visible .education-certificate-link {
+    opacity:1;
+    transform:translate(2px, -2px);
+}
+
+@media (max-width: 900px) {
+    .education-grid {
+        grid-template-columns:1fr;
+    }
+
+    .education-grid {
+        gap:42px;
+        margin-top:26px;
+    }
+}
+
+@media (max-width: 768px) {
+    .education-preview {
+        padding-top:52px;
+        padding-bottom:60px;
+    }
+
+    .education-certificate {
+        grid-template-columns:1fr;
+        align-items:start;
+        gap:12px;
+    }
 }
 
 .technical-preview {
@@ -1982,25 +2118,31 @@ section {
 }
 
 .about-preview {
+    position:relative;
     padding-top:clamp(110px, 9vw, 150px) !important;
-    padding-bottom:clamp(78px, 8vw, 118px);
+    padding-bottom:clamp(62px, 6vw, 90px);
     background:
         radial-gradient(circle at 82% 24%, rgba(123,93,66,0.18), transparent 32%),
         #e9e3db;
 }
 
+.about-preview::after {
+    content:"";
+    position:absolute;
+    bottom:0;
+    left:40px;
+    width:calc(100% - 120px);
+    height:2px;
+    background:rgba(22,20,18,0.4);
+    border-radius:20px;
+}
+
 .about-layout {
-    display:grid;
-    grid-template-columns:minmax(0, 0.9fr) minmax(360px, 0.8fr);
-    align-items:start;
-    gap:clamp(60px, 10vw, 150px);
+    display:block;
 }
 
 .about-kicker {
-    display:flex;
-    align-items:center;
-    gap:11px;
-    margin:0 0 25px;
+    margin:4px 0 0;
     font-size:13px;
     font-weight:500;
     letter-spacing:0.15em;
@@ -2008,89 +2150,60 @@ section {
     opacity:0.66;
 }
 
-.about-kicker::before {
-    content:"";
-    width:8px;
-    height:8px;
-    flex:0 0 auto;
-    border-radius:50%;
-    background:#8a5d3b;
-}
-
-.about-heading h2 {
-    max-width:650px;
-    margin:0;
-    font-family:"Instrument Serif", serif;
-    font-size:clamp(56px, 6.2vw, 92px);
-    font-weight:400;
-    line-height:0.94;
-}
-
 .about-copy {
-    max-width:590px;
-    padding-top:48px;
+    display:grid;
+    grid-template-columns:minmax(280px, 0.85fr) minmax(360px, 1fr);
+    gap:22px clamp(60px, 9vw, 140px);
+    max-width:none;
+    margin-top:32px;
 }
 
 .about-copy p {
-    margin:0 0 22px;
+    margin:0;
     font-size:15px;
     line-height:1.72;
 }
 
 .about-copy .about-lead {
-    margin-bottom:28px;
-    font-size:19px;
+    grid-row:1 / span 2;
+    font-family:"Instrument Serif", serif;
+    font-size:24px;
     line-height:1.55;
 }
 
-.about-signals {
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px 0;
-    margin-top:34px;
-    padding-top:19px;
-    border-top:1px solid rgba(22,20,18,0.34);
-}
-
-.about-signals span {
-    display:inline-flex;
-    align-items:center;
-    font-size:12px;
-    font-weight:500;
-    letter-spacing:0.1em;
-    text-transform:uppercase;
-}
-
-.about-signals span:not(:last-child)::after {
-    content:"·";
-    margin:0 14px;
-    color:#8a5d3b;
+.about-copy p:last-child {
+    margin-bottom:0;
 }
 
 @media (max-width: 900px) {
-    .about-layout {
-        grid-template-columns:1fr;
-        gap:30px;
+    .about-copy {
+        display:block;
+        max-width:680px;
+        margin-top:30px;
     }
 
-    .about-copy {
-        max-width:680px;
-        padding-top:0;
+    .about-copy p {
+        margin-bottom:22px;
+    }
+
+    .about-copy .about-lead {
+        margin-bottom:28px;
     }
 }
 
 @media (max-width: 768px) {
     .about-preview {
         padding-top:100px !important;
-        padding-bottom:72px;
+        padding-bottom:60px;
     }
 
-    .about-heading h2 {
-        font-size:clamp(52px, 15vw, 72px);
+    .about-preview::after {
+        left:20px;
+        width:calc(100% - 40px);
     }
 
     .about-copy .about-lead {
-        font-size:18px;
+        font-size:22px;
     }
 }
 
@@ -2114,7 +2227,7 @@ section {
 .technical-heading h2 {
     margin:0;
     font-family:"Instrument Serif", serif;
-    font-size:clamp(50px, 5.6vw, 82px);
+    font-size:clamp(46px, 5vw, 72px);
     font-weight:400;
     line-height:0.98;
 }
@@ -2197,12 +2310,6 @@ section {
         margin-right:0;
     }
 
-    .education-preview::before,
-    .technical-preview::before {
-        left:20px;
-        width:calc(100% - 40px);
-    }
-
 }
 
 .work-preview h2 {
@@ -2228,7 +2335,9 @@ section {
     html { scroll-behavior:auto; }
     .slider button,
     .progress-bar,
-    .vst-waitlist-submit { transition:none; }
+    .vst-waitlist-submit,
+    .education-certificate-link,
+    .skip-link { transition:none; }
 }
 
 
