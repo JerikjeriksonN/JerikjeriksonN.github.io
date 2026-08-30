@@ -881,23 +881,70 @@ footer {
 
 
 .contact-social-nav {
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px 18px;
-    margin-top:24px;
+    width:100%;
+    max-width:420px;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:10px;
+    margin-top:30px;
 }
 
 .contact-social-nav a {
-    min-height:44px;
-    display:inline-flex;
+    min-height:58px;
+    display:flex;
     align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    padding:10px 13px 10px 15px;
+    border:1px solid rgba(247,245,242,0.24);
+    border-radius:10px;
+    background:
+        radial-gradient(circle at 35% 45%, rgba(168,108,58,0.11), rgba(123,93,66,0.045) 38%, transparent 72%),
+        rgba(247,245,242,0.055);
     color:#f7f5f2;
-    font-size:14px;
+    text-align:left;
     text-decoration:none;
+    transition:background 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.contact-social-nav strong,
+.contact-social-nav small {
+    display:block;
+}
+
+.contact-social-nav strong {
+    font-size:14px;
+    font-weight:500;
+    line-height:1.25;
+}
+
+.contact-social-nav small {
+    margin-top:2px;
+    font-size:11px;
+    line-height:1.3;
+    opacity:0.68;
+}
+
+.contact-link-arrow {
+    flex:0 0 auto;
+    font-size:18px;
+    font-weight:300;
+    line-height:1;
 }
 
 .contact-social-nav a:hover {
-    opacity:0.65;
+    border-color:rgba(247,245,242,0.52);
+    background:
+        radial-gradient(circle at 35% 45%, rgba(181,116,61,0.18), rgba(123,93,66,0.07) 42%, transparent 74%),
+        rgba(247,245,242,0.1);
+    transform:translateY(-2px);
+}
+
+@media (max-width: 480px) {
+    .contact-social-nav {
+        max-width:360px;
+        grid-template-columns:1fr;
+    }
 }
 
 
@@ -1932,6 +1979,208 @@ section {
 
     content:none;
 
+}
+
+.about-preview {
+    padding-top:clamp(110px, 9vw, 150px) !important;
+    padding-bottom:clamp(78px, 8vw, 118px);
+    background:
+        radial-gradient(circle at 82% 24%, rgba(123,93,66,0.18), transparent 32%),
+        #e9e3db;
+}
+
+.about-layout {
+    display:grid;
+    grid-template-columns:minmax(0, 0.9fr) minmax(360px, 0.8fr);
+    align-items:start;
+    gap:clamp(60px, 10vw, 150px);
+}
+
+.about-kicker {
+    display:flex;
+    align-items:center;
+    gap:11px;
+    margin:0 0 25px;
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    opacity:0.66;
+}
+
+.about-kicker::before {
+    content:"";
+    width:8px;
+    height:8px;
+    flex:0 0 auto;
+    border-radius:50%;
+    background:#8a5d3b;
+}
+
+.about-heading h2 {
+    max-width:650px;
+    margin:0;
+    font-family:"Instrument Serif", serif;
+    font-size:clamp(56px, 6.2vw, 92px);
+    font-weight:400;
+    line-height:0.94;
+}
+
+.about-copy {
+    max-width:590px;
+    padding-top:48px;
+}
+
+.about-copy p {
+    margin:0 0 22px;
+    font-size:15px;
+    line-height:1.72;
+}
+
+.about-copy .about-lead {
+    margin-bottom:28px;
+    font-size:19px;
+    line-height:1.55;
+}
+
+.about-signals {
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 0;
+    margin-top:34px;
+    padding-top:19px;
+    border-top:1px solid rgba(22,20,18,0.34);
+}
+
+.about-signals span {
+    display:inline-flex;
+    align-items:center;
+    font-size:12px;
+    font-weight:500;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+}
+
+.about-signals span:not(:last-child)::after {
+    content:"·";
+    margin:0 14px;
+    color:#8a5d3b;
+}
+
+@media (max-width: 900px) {
+    .about-layout {
+        grid-template-columns:1fr;
+        gap:30px;
+    }
+
+    .about-copy {
+        max-width:680px;
+        padding-top:0;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-preview {
+        padding-top:100px !important;
+        padding-bottom:72px;
+    }
+
+    .about-heading h2 {
+        font-size:clamp(52px, 15vw, 72px);
+    }
+
+    .about-copy .about-lead {
+        font-size:18px;
+    }
+}
+
+.technical-heading {
+    display:grid;
+    grid-template-columns:minmax(0, 1.2fr) minmax(260px, 0.8fr);
+    align-items:end;
+    gap:18px clamp(40px, 7vw, 100px);
+}
+
+.technical-kicker {
+    grid-column:1 / -1;
+    margin:0;
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    opacity:0.62;
+}
+
+.technical-heading h2 {
+    margin:0;
+    font-family:"Instrument Serif", serif;
+    font-size:clamp(50px, 5.6vw, 82px);
+    font-weight:400;
+    line-height:0.98;
+}
+
+.technical-intro {
+    max-width:430px;
+    margin:0 0 5px;
+    font-size:16px;
+    line-height:1.65;
+}
+
+.technical-preview .technical-grid {
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:clamp(28px, 4vw, 60px);
+    margin-top:58px;
+}
+
+.technical-card {
+    min-height:190px;
+    padding:24px 0 0;
+    border-top:1px solid rgba(22,20,18,0.34);
+}
+
+.technical-card h3 {
+    margin:0 0 14px;
+    font-family:"Instrument Serif", serif;
+    font-size:clamp(27px, 2.3vw, 34px);
+    font-weight:400;
+    line-height:1.05;
+}
+
+.technical-card p {
+    margin:0;
+    font-size:14px;
+    line-height:1.6;
+    opacity:0.78;
+}
+
+@media (max-width: 900px) {
+    .technical-heading {
+        grid-template-columns:1fr;
+        gap:22px;
+    }
+
+    .technical-kicker {
+        grid-column:auto;
+    }
+
+    .technical-intro {
+        max-width:560px;
+    }
+
+    .technical-preview .technical-grid {
+        grid-template-columns:1fr;
+        gap:12px;
+        margin-top:42px;
+    }
+
+    .technical-card {
+        min-height:0;
+    }
+
+    .technical-card h3 {
+        margin-top:0;
+    }
 }
 
 
