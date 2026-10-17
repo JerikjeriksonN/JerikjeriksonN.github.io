@@ -6,16 +6,37 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Erik Magnifico | Audio Portfolio for Upwork</title>
+<title>Erik Magnifico | Recording, Mixing &amp; Music Production</title>
+
+<!-- Sharing/search metadata: remove this block to undo; no visible layout changes. -->
+<meta name="description" content="Recording, mixing and music production by Erik Magnifico. Explore studio sessions, live recordings and a sampled upright piano instrument in development.">
+<link rel="canonical" href="https://erikmagnifico.com/upwork/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Erik Magnifico">
+<meta property="og:title" content="Erik Magnifico | Recording, Mixing &amp; Music Production">
+<meta property="og:description" content="Studio sessions, live recordings and music production. Explore Erik’s selected work.">
+<meta property="og:url" content="https://erikmagnifico.com/upwork/">
+<meta property="og:image" content="https://erikmagnifico.com/images/hero-1200.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="800">
+<meta property="og:image:alt" content="Studio recording session from Erik Magnifico’s portfolio">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Erik Magnifico | Recording, Mixing &amp; Music Production">
+<meta name="twitter:description" content="Studio sessions, live recordings and music production by Erik Magnifico.">
+<meta name="twitter:image" content="https://erikmagnifico.com/images/hero-1200.jpg">
+<meta name="twitter:image:alt" content="Studio recording session from Erik Magnifico’s portfolio">
+<!-- End sharing/search metadata. -->
 
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=2">
 
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/style.css?v=20260830-site-cleanup">
 
 </head>
 
 
 <body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
 
 
 <header>
@@ -35,7 +56,6 @@
 <a href="#about">About</a>
 <a href="#education">Education</a>
 
-
 </div>
 
 </nav>
@@ -45,7 +65,7 @@
 
 
 
-<main>
+<main id="main-content">
 
 
 <section class="hero">
@@ -71,7 +91,7 @@ Abbey Road Institute Amsterdam
 
 <div class="hero-image">
 
-    <img src="../images/hero.JPG" alt="Studio session">
+    <img src="../images/hero-1600.jpg" srcset="../images/hero-800.jpg 800w, ../images/hero-1200.jpg 1200w, ../images/hero-1600.jpg 1600w, ../images/hero-2400.jpg 2400w" sizes="(max-width: 768px) calc(100vw - 40px), calc(100vw - 120px)" width="6000" height="4000" fetchpriority="high" alt="Studio session">
 
 </div>
 
@@ -89,7 +109,89 @@ Abbey Road Institute Amsterdam
 Work
 </h2>
 
-<div class="project-preview">
+<div class="project-preview vst-project" id="vst" data-work-project="vst">
+
+
+<div class="slider vst-slider">
+
+    <img src="../images/vst-session/vst-session-web-01.jpg" class="slide active vst-session-photo" alt="Upright piano prepared with microphones for the VST sampling session, image 1 of 4" loading="lazy" decoding="async">
+
+    <img src="../images/vst-session/vst-session-web-02.jpg" class="slide vst-session-photo" alt="Open upright piano action and microphone setup during the VST sampling session, image 2 of 4" loading="lazy" decoding="async">
+
+    <img src="../images/vst-session/vst-session-web-03.jpg" class="slide vst-session-photo" alt="Rear microphone placement on the upright piano during the VST sampling session, image 3 of 4" loading="lazy" decoding="async">
+
+    <img src="../images/vst-session/vst-session-web-04.jpg" class="slide vst-session-photo" alt="Microphone positioned behind the upright piano during the VST sampling session, image 4 of 4" loading="lazy" decoding="async">
+
+    <!-- Add VST interface screenshots here as additional .slide images. -->
+
+    <div class="slide-counter">
+        01 / 04
+    </div>
+
+<button class="prev" type="button" aria-label="Previous image in the Upright Piano VST gallery">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M15 18l-6-6 6-6"/>
+    </svg>
+</button>
+
+<button class="next" type="button" aria-label="Next image in the Upright Piano VST gallery">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M9 18l6-6-6-6"/>
+    </svg>
+</button>
+
+</div>
+
+
+<div class="vst-project-copy">
+
+<p class="project-kicker">Instrument in development</p>
+
+<h3>
+Upright Piano VST
+</h3>
+
+
+<p>
+A sampled instrument built from an upright piano, captured in detail
+across the strings, action and body for an intimate, tactile sound.
+</p>
+
+
+<p>
+Sampling · Recording · Editing · Instrument Design
+</p>
+
+<p class="vst-interface-note">
+Interface previews and playable audio demos are coming as development continues.
+</p>
+
+
+<div class="custom-player audio-unavailable" data-track-title="Upright Piano VST — Audio preview">
+
+    <audio class="audio-file"></audio>
+
+    <div class="player-top">
+        <div class="player-title">Upright Piano VST — Audio preview</div>
+        <button class="play-button" type="button" aria-label="Audio coming soon for Upright Piano VST — Audio preview" disabled>▶</button>
+    </div>
+
+    <div class="player-time">Audio coming soon</div>
+
+    <div class="progress-container" role="slider" tabindex="-1" aria-label="Upright Piano VST audio position" aria-disabled="true" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="Audio coming soon">
+        <div class="progress-bar"></div>
+    </div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+<!-- Zoey Hernandez project on hold. Remove this comment wrapper to restore it.
+<div class="project-preview" data-project="zoey-hernandez">
 
 
 <div class="slider">
@@ -159,24 +261,39 @@ Songwriting · Production · Mixing
 
 </div>
 
-<div class="project-preview">
+-->
+
+<div class="project-preview" id="dorsy" data-work-project="dorsy">
 
 
-<div class="slider">
+<div class="slider dorsy-slider">
 
-    <img src="../images/dorsy-01.jpg" class="slide active" alt="Dorsy recording session">
+    <img src="../images/dorsy-session/dorsy-session-01-control-room.jpg" class="slide active" alt="Dorsy team working together at the studio console, image 1 of 11" loading="lazy" decoding="async">
 
+    <img src="../images/dorsy-session/dorsy-session-02-2935.jpg" class="slide" alt="Close view of the analogue studio console during the Dorsy session, image 2 of 11" loading="lazy" decoding="async">
 
-    <!-- Add more pictures later -->
+    <img src="../images/dorsy-session/dorsy-session-03-2942.jpg" class="slide" alt="Wide view of the Dorsy control room and recording console, image 3 of 11" loading="lazy" decoding="async">
 
-    <!--
-    <img src="../images/dorsy-02.jpg" class="slide" alt="Dorsy recording session">
+    <img src="../images/dorsy-session/dorsy-session-04-2946.jpg" class="slide" alt="Microphone setup in the live room for the Dorsy recording, image 4 of 11" loading="lazy" decoding="async">
 
-    <img src="../images/dorsy-03.jpg" class="slide" alt="Dorsy recording session">
-    -->
+    <img src="../images/dorsy-session/dorsy-session-05-2949.jpg" class="slide" alt="Drum kit and microphone setup during the Dorsy recording, image 5 of 11" loading="lazy" decoding="async">
+
+    <img src="../images/dorsy-session/dorsy-session-06-2951.jpg" class="slide" alt="Studio tape machine during the Dorsy recording session, image 6 of 11" loading="lazy" decoding="async">
+
+    <img src="../images/dorsy-session/dorsy-session-07-2960.jpg" class="slide" alt="Engineer working at the console during the Dorsy session, image 7 of 11" loading="lazy" decoding="async">
+
+    <img src="../images/dorsy-session/dorsy-session-08-2962.jpg" class="slide" alt="Dorsy team in the control room during recording, image 8 of 11" loading="lazy" decoding="async">
+
+    <img src="../images/dorsy-session/dorsy-session-09-5794.jpg" class="slide" alt="Engineer listening at the studio console during the Dorsy session, image 9 of 11" loading="lazy" decoding="async">
+
+    <img src="../images/dorsy-session/dorsy-session-10-6650.jpg" class="slide" alt="Group listening together at the console during the Dorsy session, image 10 of 11" loading="lazy" decoding="async">
+
+    <video class="slide dorsy-video" controls preload="metadata" playsinline aria-label="Dorsy studio-session video, item 11 of 11">
+        <source src="../video/dorsy-session-01.m4v" type="video/mp4">
+    </video>
 
     <div class="slide-counter">
-        01 / 01
+        01 / 11
     </div>
 
 <button class="prev" type="button" aria-label="Previous image in the Dorsy gallery">
@@ -216,7 +333,7 @@ Production · Recording · Neve VR Legend · Studer Tape
 
 <div class="custom-player" data-track-title="Dorsy — Studio Recording">
 
-    <audio class="audio-file">
+    <audio class="audio-file" preload="metadata">
         <source src="../audio/dorsy_01.mp3" type="audio/mpeg">
     </audio>
 
@@ -252,27 +369,37 @@ Production · Recording · Neve VR Legend · Studer Tape
 
 </div>
 
-<div class="project-preview">
+<div class="project-preview" id="suite-spot" data-work-project="suite-spot">
 
 
 <div class="slider">
 
-    <img src="../images/suitespot-01.jpg" class="slide active" alt="Suite Spot Concerts">
+    <img src="../images/suitespot-05.jpg" class="slide active" alt="Suite Spot Concerts recording session, image 1 of 12" loading="lazy" decoding="async">
 
-    <img src="../images/suitespot-02.jpg" class="slide" alt="Suite Spot Concerts">
+    <img src="../images/suitespot-01.jpg" class="slide" alt="Suite Spot Concerts recording session, image 2 of 12" loading="lazy" decoding="async">
 
-    <img src="../images/suitespot-03.jpg" class="slide" alt="Suite Spot Concerts">
+    <img src="../images/suitespot-02.jpg" class="slide" alt="Suite Spot Concerts recording session, image 3 of 12" loading="lazy" decoding="async">
 
-    <img src="../images/suitespot-04.jpg" class="slide" alt="Suite Spot Concerts">
+    <img src="../images/suitespot-03.jpg" class="slide" alt="Suite Spot Concerts recording session, image 4 of 12" loading="lazy" decoding="async">
 
-    <img src="../images/suitespot-05.jpg" class="slide" alt="Suite Spot Concerts">
+    <img src="../images/suitespot-04.jpg" class="slide" alt="Suite Spot Concerts recording session, image 5 of 12" loading="lazy" decoding="async">
 
-    <img src="../images/suitespot-06.jpg" class="slide" alt="Suite Spot Concerts">
+    <img src="../images/suitespot-06.jpg" class="slide" alt="Suite Spot Concerts recording session, image 6 of 12" loading="lazy" decoding="async">
 
-    <img src="../images/suitespot-07.jpg" class="slide" alt="Suite Spot Concerts">
+    <img src="../images/suitespot-07.jpg" class="slide" alt="Suite Spot Concerts recording session, image 7 of 12" loading="lazy" decoding="async">
+
+    <img src="../images/suitespot-08.jpg" class="slide" alt="Suite Spot Concerts recording session, image 8 of 12" loading="lazy" decoding="async">
+
+    <img src="../images/suitespot-09.jpg" class="slide" alt="Suite Spot Concerts recording session, image 9 of 12" loading="lazy" decoding="async">
+
+    <img src="../images/suitespot-10.jpg" class="slide" alt="Suite Spot Concerts recording session, image 10 of 12" loading="lazy" decoding="async">
+
+    <img src="../images/suitespot-11.jpg" class="slide" alt="Suite Spot Concerts recording session, image 11 of 12" loading="lazy" decoding="async">
+
+    <img src="../images/suitespot-12.jpg" class="slide" alt="Suite Spot Concerts recording session, image 12 of 12" loading="lazy" decoding="async">
 
     <div class="slide-counter">
-        01 / 07
+        01 / 12
     </div>
     
 <button class="prev" type="button" aria-label="Previous image in the Suite Spot Concerts gallery">
@@ -292,9 +419,11 @@ Production · Recording · Neve VR Legend · Studer Tape
 
 <div>
 
-<h3>
-Suite Spot Concerts
-</h3>
+<div class="project-heading-row">
+
+<h3>Suite Spot Concerts</h3>
+
+</div>
 
 
 <p>
@@ -307,18 +436,45 @@ in unique spaces.
 Recording · Mixing · Production
 </p>
 
-<div class="custom-player audio-unavailable" data-track-title="Suite Spot Concerts">
+<div class="project-audio-list" aria-label="Suite Spot Concerts recordings">
 
-    <audio class="audio-file"></audio>
+<div class="custom-player" data-track-title="Sulawesi — Suite Spot Concerts">
+
+    <audio class="audio-file" preload="metadata">
+        <source src="../audio/sulawesi-suitespot.mp3" type="audio/mpeg">
+    </audio>
 
     <div class="player-top">
-        <div class="player-title">Suite Spot Concerts</div>
-        <button class="play-button" type="button" aria-label="Audio coming soon for Suite Spot Concerts" disabled>▶</button>
+        <div class="player-title">Sulawesi — Suite Spot Concerts</div>
+        <button class="play-button" type="button" aria-label="Play Sulawesi — Suite Spot Concerts">▶</button>
     </div>
 
-    <div class="player-time">Audio coming soon</div>
+    <div class="player-meta">
+        <div class="player-time">0:00 / 0:00</div>
+    </div>
 
-    <div class="progress-container" role="slider" tabindex="-1" aria-label="Suite Spot Concerts audio position" aria-disabled="true" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="Audio coming soon">
+    <div class="progress-container" role="slider" tabindex="0" aria-label="Sulawesi audio position" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="0:00 of 0:00">
+        <div class="progress-bar"></div>
+    </div>
+
+</div>
+
+<div class="custom-player" data-track-title="Dorsy — Suite Spot Concerts">
+
+    <audio class="audio-file" preload="metadata">
+        <source src="../audio/dorsy-suitespot.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="player-top">
+        <div class="player-title">Dorsy — Suite Spot Concerts</div>
+        <button class="play-button" type="button" aria-label="Play Dorsy — Suite Spot Concerts">▶</button>
+    </div>
+
+    <div class="player-meta">
+        <div class="player-time">0:00 / 0:00</div>
+    </div>
+
+    <div class="progress-container" role="slider" tabindex="0" aria-label="Dorsy Suite Spot audio position" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="0:00 of 0:00">
         <div class="progress-bar"></div>
     </div>
 
@@ -326,21 +482,20 @@ Recording · Mixing · Production
 
 </div>
 
-
 </div>
 
 
 </div>
 
 
-<div class="project-preview">
+<div class="project-preview" id="paradiso" data-work-project="paradiso">
 
 
 <div class="slider">
 
-    <img src="../images/paradiso-01.jpg" class="slide active" alt="Paradiso recording">
+    <img src="../images/paradiso-01.jpg" class="slide active" alt="Paradiso recording" loading="lazy" decoding="async">
 
-    <img src="../images/paradiso-02.jpg" class="slide" alt="Paradiso recording">
+    <img src="../images/paradiso-02.jpg" class="slide" alt="Paradiso control room mixing console" loading="lazy" decoding="async">
 
     <div class="slide-counter">
         01 / 02
@@ -457,10 +612,6 @@ Recording · Mixing · Engineering
 </div>
 
 
-</div>
-
-
-
 </section>
 
 
@@ -471,23 +622,26 @@ Recording · Mixing · Engineering
 
 <section id="about" class="about-preview neutral-section">
 
+<div class="about-layout">
+    <header class="about-heading">
+        <h2 class="about-kicker">About</h2>
+    </header>
 
-<h2>
-About
-</h2>
+    <div class="about-copy">
+        <p class="about-lead">
+            Erik Magnifico is an audio engineer and music producer based in Amsterdam. His work moves between studio recordings, intimate live sessions, mixing and sampled-instrument development.
+        </p>
 
+        <p>
+            Starting with classical violin and later expanding to piano, guitar and keys, he learned music from inside the performance. That perspective shapes how he listens to timing, tone, dynamics and arrangement before reaching for a technical solution.
+        </p>
 
-<p>
-With a background in classical violin and experience on
-piano, guitar and keys, Erik brings a musician's perspective
-to every recording session.
-</p>
+        <p>
+            Whether capturing a live room or refining a mix, the aim is the same: make deliberate choices, communicate clearly and preserve what makes the performance feel alive.
+        </p>
 
-
-<p>
-His approach combines technical precision with an
-understanding of performance, arrangement and collaboration.
-</p>
+    </div>
+</div>
 
 
 </section>
@@ -500,37 +654,31 @@ understanding of performance, arrangement and collaboration.
 
 <section id="education" class="education-preview neutral-section">
 
+<header class="education-heading">
+    <h2 class="education-kicker">Education</h2>
+</header>
 
-<h2>
-Education
-</h2>
+<div class="education-grid">
+    <article class="education-program">
+        <h3>Abbey Road Institute Amsterdam</h3>
+        <p class="education-program-name">Music Production &amp; Audio Engineering</p>
+        <p class="education-year">2025–2026</p>
+    </article>
 
+    <div class="education-certificates" aria-label="Dolby Laboratories certificates">
+        <p class="education-group-label">Dolby Laboratories · August 2026</p>
 
-<h3>
-Abbey Road Institute Amsterdam
-</h3>
+        <a class="education-certificate" href="https://learning.dolby.com/mod/multitencertificate/certificate.php/MTZfMTYxNDJfTWVsMldpbiMyMDIyI0xpbmtkaW4" target="_blank" rel="noopener noreferrer">
+            <span class="education-certificate-name">Dolby Atmos Mix Room Design and DARDT Training - Completion Certificate</span>
+            <span class="education-certificate-link">View credential <span aria-hidden="true">↗</span></span>
+        </a>
 
-
-<p>
-Music Production & Audio Engineering
-<br>
-2025–2026
-</p>
-
-
-
-<h3>
-Additional Training
-</h3>
-
-
-<p>
-Dolby Atmos Music
-<br>
-Avid Pro Tools Certification
-<br>
-Apple Digital Masters Workflow
-</p>
+        <a class="education-certificate" href="https://learning.dolby.com/mod/multitencertificate/certificate.php/Ml8xNjE0Ml9NZWwyV2luIzIwMjIjTGlua2Rpbg" target="_blank" rel="noopener noreferrer">
+            <span class="education-certificate-name">Dolby Atmos Essentials Completion Certificate</span>
+            <span class="education-certificate-link">View credential <span aria-hidden="true">↗</span></span>
+        </a>
+    </div>
+</div>
 
 
 </section>
@@ -541,65 +689,37 @@ Apple Digital Masters Workflow
 
 
 
-<section class="technical-preview neutral-section">
+<section id="technical" class="technical-preview neutral-section">
 
-
-<h2>
-Technical Experience
-</h2>
-
-
+<div class="technical-heading">
+    <p class="technical-kicker">Practice &amp; tools</p>
+    <h2>From session setup to final mix.</h2>
+    <p class="technical-intro">
+        Hands-on work across studio recording, live sessions and sampled-instrument development.
+    </p>
+</div>
 
 <div class="technical-grid">
+    <article class="technical-card">
+        <h3>Recording &amp; Sampling</h3>
+        <p>
+            Studio and location recording for acoustic instruments and live sessions, including multi-mic instrument sampling.
+        </p>
+    </article>
 
+    <article class="technical-card">
+        <h3>Editing &amp; Mixing</h3>
+        <p>
+            Detailed session editing, stereo mixing and Dolby Atmos music workflows for recorded music and concert sessions.
+        </p>
+    </article>
 
-<div>
-
-<h3>
-Analogue
-</h3>
-
-<p>
-Neve VR Legend<br>
-SSL 8000 G<br>
-Studer Tape
-</p>
-
-</div>
-
-
-
-<div>
-
-<h3>
-Digital
-</h3>
-
-<p>
-Pro Tools<br>
-Ableton Live<br>
-Logic Pro
-</p>
-
-</div>
-
-
-
-<div>
-
-<h3>
-Recording
-</h3>
-
-<p>
-Studio<br>
-Location<br>
-Live Sessions
-</p>
-
-</div>
-
-
+    <article class="technical-card">
+        <h3>Software Workflow</h3>
+        <p>
+            Pro Tools, Ableton Live and Logic Pro for tracking, editing, production and mix preparation.
+        </p>
+    </article>
 </div>
 
 
@@ -617,9 +737,9 @@ Live Sessions
 
 <div class="contact-intro">
 
-<p class="contact-kicker">Let’s work together</p>
+<p class="contact-kicker">Available through Upwork</p>
 
-<h2>Interested in collaborating?</h2>
+<h2>Let’s work together</h2>
 
 <p class="contact-location">
     Please keep all project communication on Upwork until a contract is in place.
@@ -630,11 +750,33 @@ Live Sessions
 </footer>
 
 
+<div class="media-lightbox" role="dialog" aria-modal="true" aria-label="Media preview" aria-hidden="true" hidden>
 
-<script src="../js/script.js"></script>
+    <button class="media-lightbox-close" type="button" aria-label="Close media preview">×</button>
+
+    <button class="media-lightbox-nav media-lightbox-prev" type="button" aria-label="Previous media in this gallery">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M15 18l-6-6 6-6"/>
+        </svg>
+    </button>
+
+    <div class="media-lightbox-stage"></div>
+
+    <button class="media-lightbox-nav media-lightbox-next" type="button" aria-label="Next media in this gallery">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M9 18l6-6-6-6"/>
+        </svg>
+    </button>
+
+    <div class="media-lightbox-counter" aria-live="polite"></div>
+
+</div>
+
+
+
+<script src="../js/script.js?v=20260830-work-order"></script>
 
 
 </body>
 
 </html>
-
